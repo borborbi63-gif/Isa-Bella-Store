@@ -83,6 +83,64 @@ body.light-mode select.fsel{background:#fff;color:#2a0f1a;}
 /* DEVOLUCIONES */
 .devolucion-badge{background:rgba(180,127,212,.12);color:var(--purple);border:1px solid rgba(180,127,212,.3);}
 
+/* ══════════════════════════════════════
+   DESCUENTO WIDGET — nueva venta
+══════════════════════════════════════ */
+.descuento-panel{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,rgba(201,151,58,.07),rgba(212,104,138,.05));
+  border:1px solid rgba(201,151,58,.25);
+  border-radius:12px;
+  padding:16px 18px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.descuento-panel-title{
+  font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:2px;
+  color:var(--accent);display:flex;align-items:center;gap:6px;
+}
+.descuento-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.descuento-tabs{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.dtab{
+  padding:7px 14px;font-size:12px;font-family:var(--fm);cursor:pointer;
+  background:transparent;border:none;color:var(--muted);transition:all .2s;
+  white-space:nowrap;
+}
+.dtab.active{background:var(--accent);color:#1a0f14;font-weight:600;}
+.descuento-result{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(201,151,58,.1);border:1px solid rgba(201,151,58,.2);
+  border-radius:8px;padding:6px 12px;
+  font-family:var(--fm);font-size:12px;color:var(--accent2);
+  white-space:nowrap;min-width:120px;
+}
+.descuento-result.active-discount{
+  background:rgba(109,186,138,.1);border-color:rgba(109,186,138,.3);color:var(--green);
+}
+.total-final-box{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,rgba(201,151,58,.08),rgba(232,184,109,.05));
+  border:1px solid rgba(201,151,58,.3);
+  border-radius:12px;padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.tfb-label{font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+.tfb-value{font-family:var(--fd);font-size:32px;font-weight:400;color:var(--accent2);}
+.tfb-original{font-family:var(--fm);font-size:11px;color:var(--muted);text-decoration:line-through;}
+.tfb-badge{background:var(--green);color:#fff;border-radius:6px;padding:3px 10px;font-size:11px;font-family:var(--fm);}
+
+/* DESCRIPCION FIELD CUSTOM */
+.desc-select-wrap{position:relative;}
+.desc-tipo-tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
+.desc-tab{
+  padding:5px 14px;border-radius:20px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);cursor:pointer;
+  font-size:11px;font-family:var(--fm);transition:all .2s;
+}
+.desc-tab.active{
+  background:linear-gradient(135deg,var(--pink),var(--accent));
+  color:#fff;border-color:transparent;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100vh;display:flex;}
 
@@ -105,8 +163,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
     radial-gradient(ellipse at 85% 20%,rgba(212,104,138,.08) 0%,transparent 50%),
     radial-gradient(ellipse at 50% 80%,rgba(201,151,58,.05) 0%,transparent 40%);
 }
-
-/* Decorative petals */
 #loginScreen::before{
   content:"✿ ✾ ✿ ✾ ✿";
   position:absolute;top:18%;left:50%;transform:translateX(-50%);
@@ -117,13 +173,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
   position:absolute;bottom:18%;left:50%;transform:translateX(-50%);
   font-size:14px;color:rgba(201,151,58,.2);letter-spacing:24px;pointer-events:none;
 }
-
 .ll{text-align:center;}
 .ll .lt{font-family:var(--fd);font-size:62px;font-weight:300;letter-spacing:8px;color:var(--accent2);display:block;text-shadow:0 0 50px rgba(201,151,58,.4);}
 .ll .lt span{color:var(--pink-light);font-style:italic;}
 .ll .ls{font-family:var(--fm);font-size:10px;color:var(--pink);letter-spacing:5px;margin-top:8px;display:block;text-transform:uppercase;}
 .ll .ldeco{font-size:22px;color:rgba(212,104,138,.4);margin-top:4px;letter-spacing:10px;}
-
 .lbox{
   background:linear-gradient(145deg,rgba(34,19,24,.95),rgba(44,26,32,.9));
   border:1px solid rgba(201,151,58,.25);
@@ -140,7 +194,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
   content:"";position:absolute;bottom:0;left:20%;right:20%;height:1px;
   background:linear-gradient(90deg,transparent,rgba(212,104,138,.3),transparent);
 }
-
 .lbox h2{font-family:var(--fd);font-size:28px;font-weight:400;letter-spacing:4px;margin-bottom:30px;color:var(--text);text-align:center;}
 .lf{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
 .lf label{font-size:10px;font-family:var(--fm);text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
@@ -190,15 +243,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
   content:"";position:absolute;bottom:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--pink),var(--accent),transparent);
 }
-.sb-logo .lt{
-  font-family:var(--fd);font-size:24px;font-weight:300;letter-spacing:3px;
-  color:var(--accent2);display:block;text-shadow:0 0 24px rgba(201,151,58,.5);
-  line-height:1.2;
-}
+.sb-logo .lt{font-family:var(--fd);font-size:24px;font-weight:300;letter-spacing:3px;color:var(--accent2);display:block;text-shadow:0 0 24px rgba(201,151,58,.5);line-height:1.2;}
 .sb-logo .lt em{color:var(--pink-light);font-style:italic;}
 .sb-logo .ls{font-family:var(--fm);font-size:8px;color:var(--pink);letter-spacing:3px;margin-top:4px;text-transform:uppercase;}
 .sb-deco{font-size:12px;color:rgba(212,104,138,.3);letter-spacing:8px;margin-top:6px;}
-
 .sb-nav{flex:1;padding:10px 0;overflow-y:auto;}
 .nav-section{font-family:var(--fm);font-size:8px;text-transform:uppercase;letter-spacing:2.5px;color:rgba(212,104,138,.4);padding:14px 22px 5px;}
 .nav-item{
@@ -376,6 +424,19 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 
 /* STOCK */
 .stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+/* STOCK LISTA */
+.stock-list{display:flex;flex-direction:column;gap:8px;}
+.stock-list .stock-card{flex-direction:row;align-items:center;gap:16px;padding:14px 18px;flex-wrap:wrap;}
+.stock-list .sc-header{flex-shrink:0;min-width:80px;}
+.stock-list .sc-name{flex:1;min-width:140px;font-size:14px;}
+.stock-list .sc-price{font-size:20px;white-space:nowrap;}
+.stock-list .sc-stock{flex-direction:column;min-width:100px;}
+.stock-list .sc-actions{flex-shrink:0;margin-left:auto;}
+/* VIEW TOGGLE BUTTONS */
+.view-toggle{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.vtbtn{width:36px;height:34px;background:transparent;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;}
+.vtbtn.active{background:var(--accent);color:#1a0f14;}
+.vtbtn:hover:not(.active){background:var(--surface2);color:var(--text);}
 .stock-card{
   background:linear-gradient(145deg,var(--surface),var(--surface2));
   border:1px solid var(--border);border-radius:16px;padding:20px;transition:all .2s;display:flex;flex-direction:column;gap:12px;
@@ -528,6 +589,8 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
   .stock-card{padding:12px !important;}
   .sc-price{font-size:20px !important;}
   .sc-actions{flex-wrap:wrap !important;gap:6px !important;}
+  .stock-list .stock-card{flex-direction:column !important;align-items:flex-start !important;}
+  .stock-list .sc-actions{margin-left:0 !important;}
   .report-filters{flex-direction:column !important;gap:8px !important;}
   .rf-group{width:100% !important;}
   .rf-group input,.rf-group select,.rf-group .fi{width:100% !important;}
@@ -542,6 +605,8 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
   .venta-form{padding:16px !important;max-width:100% !important;}
   .charts-grid .chart-card{padding:16px !important;}
   .top-list{max-height:160px !important;}
+  .descuento-row{flex-direction:column !important;align-items:flex-start !important;}
+  .tfb-value{font-size:24px !important;}
 }
 @media(min-width:769px) and (max-width:1024px){
   :root{--nav:200px;}
@@ -549,7 +614,6 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
   .charts-grid{grid-template-columns:1fr !important;}
 }
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-
 
 /* INPUT DATE FIX */
 input[type="date"].fsel{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-family:var(--fb);font-size:13px;outline:none;}
@@ -728,7 +792,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
 </div>
 
 <!-- ══════════════════════════════════════
-     NUEVA VENTA
+     NUEVA VENTA  ← SECCIÓN ACTUALIZADA
 ══════════════════════════════════════ -->
 <div class="page" id="page-ventas">
   <div class="page-header">
@@ -738,42 +802,120 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
     <div class="venta-form">
       <h3>Datos de la Venta</h3>
       <div class="form-grid">
+
+        <!-- Fecha y Tipo -->
         <div class="fg"><label>Fecha *</label><input class="fi" type="date" id="v_fecha"></div>
         <div class="fg"><label>Tipo</label>
           <select class="fi" id="v_tip"><option>Venta</option><option>Devolución</option><option>Otro</option></select>
         </div>
+
+        <!-- Vendedor -->
         <div class="fg"><label>Vendedor</label>
           <select class="fi" id="v_vendedor"></select>
         </div>
-        <div class="fg"><label>Descripción</label>
-          <select class="fi" id="v_descripcion"><option>En tira</option><option>Suelto</option><option>Suelto - factura</option><option>En tira- factura</option><option>SUELTO</option></select>
+
+        <!-- DESCRIPCIÓN — Boleta / Factura / Personalizado -->
+        <div class="fg">
+          <label>Descripción / Comprobante</label>
+          <div class="desc-tipo-tabs">
+            <button type="button" class="desc-tab active" id="dtab-boleta" onclick="setDescTipo('boleta')">🧾 Boleta</button>
+            <button type="button" class="desc-tab" id="dtab-factura" onclick="setDescTipo('factura')">📄 Factura</button>
+            <button type="button" class="desc-tab" id="dtab-custom" onclick="setDescTipo('custom')">✏ Otro</button>
+          </div>
+          <!-- Campo de texto libre (solo visible en "Otro") -->
+          <input class="fi" type="text" id="v_descripcion_custom"
+            placeholder="Escribe algo personalizado..."
+            style="display:none;margin-top:2px"
+            oninput="syncDescripcionHidden()">
+          <!-- Campo oculto que guarda el valor final -->
+          <input type="hidden" id="v_descripcion" value="Boleta">
         </div>
-        <div class="fg full"><label>Cliente * <span style="color:var(--muted);font-size:10px">← escribe para buscar o seleccionar de la lista</span></label>
+
+        <!-- Cliente -->
+        <div class="fg full"><label>Cliente * <span style="color:var(--muted);font-size:10px">← escribe para buscar o seleccionar</span></label>
           <div style="position:relative">
             <input class="fi" type="text" id="v_cliente" placeholder="Nombre del cliente o negocio" autocomplete="off" oninput="filterClientesSugeridos()" onfocus="filterClientesSugeridos()">
             <div id="clienteDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface2);border:1px solid var(--accent);border-radius:0 0 10px 10px;z-index:200;max-height:200px;overflow-y:auto"></div>
           </div>
         </div>
-        <div class="fg"><label>Total (S/.) <span style="color:var(--muted);font-size:10px">← se calcula del carrito</span></label>
-          <input class="fi" type="number" id="v_total" step="0.01" placeholder="0.00" oninput="calcVSaldo()"></div>
-        <div class="fg"><label>Factura / Boleta</label><input class="fi" type="text" id="v_factura" placeholder="E001-XXXX"></div>
+
+        <!-- Factura / Fecha pago / Comprobante -->
+        <div class="fg"><label>N° Factura / Boleta</label><input class="fi" type="text" id="v_factura" placeholder="E001-XXXX"></div>
         <div class="fg"><label>Fecha de Pago</label><input class="fi" type="date" id="v_fechaPago"></div>
         <div class="fg"><label>Comprobante</label><input class="fi" type="text" id="v_comprobante" placeholder="C-XXX"></div>
         <div class="fg"><label>Nota</label>
           <select class="fi" id="v_nota"><option>RECIBO</option><option>NO SALIO</option></select>
         </div>
-        <div class="fg"><label>Pago Recibido (S/.)</label><input class="fi" type="number" id="v_pago" step="0.01" placeholder="0.00" oninput="calcVSaldo()"></div>
-        <div class="fg"><label>Saldo (auto)</label><input class="fi" type="number" id="v_saldo" readonly style="opacity:.6" placeholder="0.00"></div>
+
+        <!-- ══ PANEL DE DESCUENTO ══ -->
+        <div class="descuento-panel">
+          <div class="descuento-panel-title">
+            <span>🏷</span> Descuento (opcional)
+          </div>
+          <div class="descuento-row">
+            <!-- Tipo: % o S/. -->
+            <div class="descuento-tabs">
+              <button type="button" class="dtab active" id="dtipo-pct" onclick="setDescuentoTipo('pct')">% Porcentaje</button>
+              <button type="button" class="dtab" id="dtipo-monto" onclick="setDescuentoTipo('monto')">S/. Monto fijo</button>
+            </div>
+            <!-- Valor del descuento -->
+            <input class="fi" type="number" id="v_descuento_val"
+              min="0" step="0.01" placeholder="0"
+              style="width:110px;flex-shrink:0"
+              oninput="calcVSaldo()">
+            <!-- Resultado visual -->
+            <div class="descuento-result" id="descuentoResult">Sin descuento</div>
+            <!-- Botón limpiar -->
+            <button type="button" class="btn btn-ghost" style="padding:5px 10px;font-size:12px" onclick="clearDescuento()">✕</button>
+          </div>
+        </div>
+
+        <!-- Subtotal del carrito, descuento y TOTAL FINAL -->
+        <div class="fg">
+          <label>Subtotal (S/.) <span style="color:var(--muted);font-size:10px">← antes de descuento</span></label>
+          <input class="fi" type="number" id="v_subtotal" step="0.01" placeholder="0.00"
+            oninput="calcVSaldo()" style="font-family:var(--fm)">
+        </div>
+        <div class="fg">
+          <label>Total Final (S/.) <span style="color:var(--green);font-size:10px">← con descuento</span></label>
+          <input class="fi" type="number" id="v_total" step="0.01" placeholder="0.00"
+            style="font-family:var(--fm);color:var(--accent2);font-weight:600"
+            oninput="calcVSaldo()">
+        </div>
+
+        <!-- Caja visual del total final -->
+        <div class="total-final-box" id="totalFinalBox" style="display:none">
+          <div>
+            <div class="tfb-label">Total Final de la Venta</div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-top:4px">
+              <div class="tfb-value" id="tfbValue">S/.0.00</div>
+              <div class="tfb-original" id="tfbOriginal"></div>
+            </div>
+          </div>
+          <div id="tfbBadge"></div>
+        </div>
+
+        <!-- Pago / Saldo -->
+        <div class="fg"><label>Pago Recibido (S/.)</label>
+          <input class="fi" type="number" id="v_pago" step="0.01" placeholder="0.00" oninput="calcVSaldo()">
+        </div>
+        <div class="fg"><label>Saldo (auto)</label>
+          <input class="fi" type="number" id="v_saldo" readonly style="opacity:.6" placeholder="0.00">
+        </div>
+
         <div class="fg"><label>Estado Final</label>
           <select class="fi" id="v_estadoFinal"><option>CANCELADO</option><option>PENDIENTE</option><option>NO SALIO</option></select>
         </div>
-      </div>
+
+      </div><!-- /form-grid -->
+
       <div style="display:flex;gap:12px;margin-top:24px;align-items:center">
         <button class="btn btn-primary" id="btnGuardarVenta" onclick="guardarVenta()">💾 Guardar Venta en Sheets</button>
         <button class="btn btn-ghost" onclick="limpiarVenta()">✕ Limpiar</button>
       </div>
-    </div>
+    </div><!-- /venta-form -->
 
+    <!-- Panel derecho: productos + carrito -->
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
         <div style="font-family:var(--fd);font-size:20px;font-weight:400;letter-spacing:3px;color:var(--accent2);margin-bottom:16px">Agregar Productos</div>
@@ -792,13 +934,14 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
             <span style="font-family:var(--fm);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Total Carrito</span>
             <span style="font-family:var(--fd);font-size:28px;font-weight:400;color:var(--accent2)" id="carritoTotalVal">S/.0.00</span>
           </div>
-          <button class="btn btn-primary" style="width:100%;margin-top:10px;justify-content:center" onclick="aplicarCarrito()">↳ Aplicar al Total de Venta</button>
+          <button class="btn btn-primary" style="width:100%;margin-top:10px;justify-content:center" onclick="aplicarCarrito()">↳ Aplicar al Subtotal</button>
           <button class="btn btn-ghost" style="width:100%;margin-top:6px;justify-content:center;font-size:12px" onclick="limpiarCarrito()">✕ Vaciar carrito</button>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
+  </div><!-- /page-body grid -->
+</div><!-- /page-ventas -->
 
 <!-- ══════════════════════════════════════
      REGISTRO DE VENTAS
@@ -888,7 +1031,13 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
 <div class="page" id="page-stock">
   <div class="page-header">
     <div><div class="page-title">Stock de Productos</div><div class="page-sub">Inventario y precios</div></div>
-    <div style="display:flex;gap:10px">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <!-- Toggle cuadrícula / lista -->
+      <div class="view-toggle" title="Cambiar vista">
+        <button class="vtbtn active" id="vtGrid" onclick="setStockView('grid')" title="Cuadrícula">⊞</button>
+        <button class="vtbtn" id="vtList" onclick="setStockView('list')" title="Lista">≡</button>
+      </div>
+      <button class="btn btn-ghost" onclick="loadAll()">↻ Actualizar</button>
       <button class="btn btn-ghost" onclick="exportStockExcel()">⬇ Exportar Stock</button>
       <button class="btn btn-primary" onclick="openStockModal()">＋ Agregar Producto</button>
     </div>
@@ -901,9 +1050,10 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
     <select class="fsel" id="stock_filtro" onchange="renderStock()">
       <option value="">Todos</option><option value="low">Stock bajo (&lt;10)</option><option value="ok">Stock OK</option>
     </select>
+    <span id="stockCount" style="font-family:var(--fm);font-size:11px;color:var(--muted);white-space:nowrap;margin-left:4px"></span>
   </div>
   <div class="page-body" style="padding-top:16px">
-    <div class="stock-grid" id="stockGrid"></div>
+    <div id="stockGrid"></div>
     <div id="stockEmpty" class="empty" style="display:none"><div class="eico">📦</div><p>No hay productos registrados</p></div>
   </div>
 </div>
@@ -1024,7 +1174,17 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
       <div class="fg"><label>Fecha</label><input class="fi" type="date" id="e_fecha"></div>
       <div class="fg"><label>Tipo</label><select class="fi" id="e_tip"><option>Venta</option><option>Devolución</option><option>Otro</option></select></div>
       <div class="fg"><label>Vendedor</label><select class="fi" id="e_vendedor"></select></div>
-      <div class="fg"><label>Descripción</label><select class="fi" id="e_descripcion"><option>En tira</option><option>Suelto</option><option>Suelto - factura</option><option>En tira- factura</option><option>SUELTO</option></select></div>
+      <div class="fg"><label>Descripción</label>
+        <select class="fi" id="e_descripcion">
+          <option>Boleta</option>
+          <option>Factura</option>
+          <option>En tira</option>
+          <option>Suelto</option>
+          <option>Suelto - factura</option>
+          <option>En tira- factura</option>
+          <option>SUELTO</option>
+        </select>
+      </div>
       <div class="fg full"><label>Cliente</label><input class="fi" type="text" id="e_cliente"></div>
       <div class="fg"><label>Total (S/.)</label><input class="fi" type="number" id="e_total" step="0.01" oninput="calcESaldo()"></div>
       <div class="fg"><label>Factura</label><input class="fi" type="text" id="e_factura"></div>
@@ -1200,7 +1360,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
 const API_URL = 'https://script.google.com/macros/s/AKfycbxubx6ZklUMwqGAWAcdafaWBMsZbz4947Vk8sBPSTQUcy-HiFKIsgiQPJGUHIL3bKSlKg/exec';
 
 // ════════════════════════════════════════
-// ZONA HORARIA PERÚ (UTC-5)
+// ZONA HORARIA PERÚ
 // ════════════════════════════════════════
 function fechaHoyPeru(){
   const now = new Date();
@@ -1209,9 +1369,6 @@ function fechaHoyPeru(){
   const m = String(peru.getMonth()+1).padStart(2,'0');
   const d = String(peru.getDate()).padStart(2,'0');
   return `${y}-${m}-${d}`;
-}
-function horaAhoraPeru(){
-  return new Date().toLocaleTimeString('es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit'});
 }
 function isoAFechaPeru(iso){
   if(!iso||iso==='null'||iso==='') return '';
@@ -1242,6 +1399,9 @@ let deleteType = null;
 let editingStockId = null;
 let editingClienteId = null;
 let isSaving = false;
+
+// Descuento state
+let descuentoTipo = 'pct'; // 'pct' | 'monto'
 
 let regPage = 1; const regPerPage = 15;
 let regSortKey = 'fecha'; let regSortDir = 1;
@@ -1417,10 +1577,6 @@ async function doLogin(){
     document.getElementById('v_vendedor').value=found.name;
     document.getElementById('v_vendedor').disabled=true;
   }
-  if(!isAdmin()){
-    document.getElementById('v_vendedor').value=found.name.toUpperCase();
-    document.getElementById('v_vendedor').disabled=true;
-  }
   const hoy=fechaHoyPeru();
   const hace30=(() => { const d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Lima'})); d.setDate(d.getDate()-30); return d.toISOString().split('T')[0]; })();
   document.getElementById('rep_desde').value=hace30;
@@ -1568,14 +1724,112 @@ function renderDashboard(){
 }
 
 // ════════════════════════════════════════
-// NUEVA VENTA
+// DESCRIPCIÓN — TABS (Boleta / Factura / Otro)
 // ════════════════════════════════════════
-function calcVSaldo(){
-  const t=parseFloat(document.getElementById('v_total').value)||0;
-  const p=parseFloat(document.getElementById('v_pago').value)||0;
-  document.getElementById('v_saldo').value=Math.max(0,t-p).toFixed(2);
+function setDescTipo(tipo){
+  // Actualizar clases de los tabs
+  ['boleta','factura','custom'].forEach(t=>{
+    document.getElementById('dtab-'+t).classList.toggle('active', t===tipo);
+  });
+  const customInput = document.getElementById('v_descripcion_custom');
+  const hiddenField = document.getElementById('v_descripcion');
+
+  if(tipo === 'boleta'){
+    customInput.style.display = 'none';
+    hiddenField.value = 'Boleta';
+  } else if(tipo === 'factura'){
+    customInput.style.display = 'none';
+    hiddenField.value = 'Factura';
+  } else {
+    customInput.style.display = 'block';
+    customInput.focus();
+    hiddenField.value = customInput.value || '';
+  }
 }
 
+function syncDescripcionHidden(){
+  document.getElementById('v_descripcion').value = document.getElementById('v_descripcion_custom').value;
+}
+
+// ════════════════════════════════════════
+// DESCUENTO — LÓGICA
+// ════════════════════════════════════════
+function setDescuentoTipo(tipo){
+  descuentoTipo = tipo;
+  document.getElementById('dtipo-pct').classList.toggle('active', tipo==='pct');
+  document.getElementById('dtipo-monto').classList.toggle('active', tipo==='monto');
+  document.getElementById('v_descuento_val').placeholder = tipo==='pct' ? '0  (ej: 10 = 10%)' : '0.00';
+  document.getElementById('v_descuento_val').value = '';
+  calcVSaldo();
+}
+
+function clearDescuento(){
+  document.getElementById('v_descuento_val').value = '';
+  calcVSaldo();
+}
+
+// ════════════════════════════════════════
+// CÁLCULO DE SALDO (con descuento)
+// ════════════════════════════════════════
+function calcVSaldo(){
+  const subtotal = parseFloat(document.getElementById('v_subtotal').value) || 0;
+  const descVal  = parseFloat(document.getElementById('v_descuento_val').value) || 0;
+  const pago     = parseFloat(document.getElementById('v_pago').value) || 0;
+
+  let montoDescuento = 0;
+  if(descVal > 0){
+    if(descuentoTipo === 'pct'){
+      montoDescuento = subtotal * (descVal / 100);
+    } else {
+      montoDescuento = descVal;
+    }
+  }
+
+  // Asegura que el descuento no supere el subtotal
+  montoDescuento = Math.min(montoDescuento, subtotal);
+  const totalFinal = Math.max(0, subtotal - montoDescuento);
+
+  // Actualizar campo total
+  document.getElementById('v_total').value = totalFinal.toFixed(2);
+
+  // Saldo
+  document.getElementById('v_saldo').value = Math.max(0, totalFinal - pago).toFixed(2);
+
+  // Resultado visual del descuento
+  const resultEl = document.getElementById('descuentoResult');
+  if(descVal > 0 && subtotal > 0){
+    resultEl.textContent = `— S/.${montoDescuento.toFixed(2)}`;
+    resultEl.className = 'descuento-result active-discount';
+  } else {
+    resultEl.textContent = 'Sin descuento';
+    resultEl.className = 'descuento-result';
+  }
+
+  // Caja total final
+  const tfbBox = document.getElementById('totalFinalBox');
+  if(subtotal > 0){
+    tfbBox.style.display = 'flex';
+    document.getElementById('tfbValue').textContent = 'S/.' + totalFinal.toFixed(2);
+    const orig = document.getElementById('tfbOriginal');
+    const badge = document.getElementById('tfbBadge');
+    if(montoDescuento > 0){
+      orig.textContent = 'Antes: S/.' + subtotal.toFixed(2);
+      const pctLabel = descuentoTipo==='pct'
+        ? descVal.toFixed(0)+'%'
+        : 'S/.'+montoDescuento.toFixed(2);
+      badge.innerHTML = `<span class="tfb-badge">✓ Descuento ${pctLabel}</span>`;
+    } else {
+      orig.textContent = '';
+      badge.innerHTML = '';
+    }
+  } else {
+    tfbBox.style.display = 'none';
+  }
+}
+
+// ════════════════════════════════════════
+// NUEVA VENTA
+// ════════════════════════════════════════
 let carrito = [];
 
 function renderProdSearch(){
@@ -1641,13 +1895,10 @@ function removeFromCarrito(i){ carrito.splice(i,1); renderCarrito(); }
 
 function aplicarCarrito(){
   const total=carrito.reduce((s,x)=>s+x.precio*x.cantidad,0);
-  document.getElementById('v_total').value=total.toFixed(2);
+  // Ahora aplica al SUBTOTAL (antes de descuento)
+  document.getElementById('v_subtotal').value=total.toFixed(2);
   calcVSaldo();
-  if(carrito.length>0){
-    const desc=carrito.map(x=>`${x.nombre} x${x.cantidad}`).join(', ');
-    window._carritoDesc=desc;
-  }
-  showToast(`✅ Total S/.${total.toFixed(2)} aplicado a la venta`);
+  showToast(`✅ Subtotal S/.${total.toFixed(2)} aplicado — agrega descuento si corresponde`);
 }
 
 function limpiarCarrito(){ carrito=[]; window._carritoDesc=null; renderCarrito(); }
@@ -1684,8 +1935,23 @@ document.addEventListener('click',e=>{
 function limpiarVenta(){
   const hoy=fechaHoyPeru();
   document.getElementById('v_fecha').value=hoy;
-  ['v_cliente','v_total','v_factura','v_fechaPago','v_comprobante','v_pago'].forEach(i=>document.getElementById(i).value='');
+  ['v_cliente','v_subtotal','v_total','v_factura','v_fechaPago','v_comprobante','v_pago','v_descuento_val'].forEach(i=>{
+    const el = document.getElementById(i);
+    if(el) el.value='';
+  });
+  document.getElementById('v_saldo').value='0.00';
   document.getElementById('v_tip').value='Venta';
+  document.getElementById('v_nota').value='RECIBO';
+  document.getElementById('v_estadoFinal').value='CANCELADO';
+  // Reset descripcion
+  setDescTipo('boleta');
+  // Reset descuento
+  descuentoTipo='pct';
+  setDescuentoTipo('pct');
+  document.getElementById('descuentoResult').textContent='Sin descuento';
+  document.getElementById('descuentoResult').className='descuento-result';
+  document.getElementById('totalFinalBox').style.display='none';
+  // Reset vendedor
   if(!isAdmin()){
     document.getElementById('v_vendedor').value=currentUser.name;
     document.getElementById('v_vendedor').disabled=true;
@@ -1693,10 +1959,6 @@ function limpiarVenta(){
     document.getElementById('v_vendedor').disabled=false;
     poblarVendedores();
   }
-  document.getElementById('v_descripcion').value='En tira';
-  document.getElementById('v_nota').value='RECIBO';
-  document.getElementById('v_saldo').value='0.00';
-  document.getElementById('v_estadoFinal').value='CANCELADO';
   limpiarCarrito();
   document.getElementById('prod_search').value='';
   renderProdSearch();
@@ -1708,15 +1970,37 @@ async function guardarVenta(){
   const cliente=document.getElementById('v_cliente').value.trim();
   const vendedor=document.getElementById('v_vendedor').value;
   if(!fecha||!cliente){showToast('Fecha y Cliente son obligatorios','error');return;}
+
+  const subtotal = parseFloat(document.getElementById('v_subtotal').value)||0;
+  const total    = parseFloat(document.getElementById('v_total').value)||0;
+  const descVal  = parseFloat(document.getElementById('v_descuento_val').value)||0;
+
+  // Calcular monto de descuento para guardar en nota
+  let montoDescuento = 0;
+  if(descVal > 0 && subtotal > 0){
+    montoDescuento = descuentoTipo==='pct' ? subtotal*(descVal/100) : descVal;
+    montoDescuento = Math.min(montoDescuento, subtotal);
+  }
+
+  const descLabel = descVal > 0
+    ? (descuentoTipo==='pct' ? `Desc. ${descVal}%` : `Desc. S/.${montoDescuento.toFixed(2)}`)
+    : '';
+
+  const descripcionFinal = document.getElementById('v_descripcion').value || 'Boleta';
+
   const record={
     id:'',fecha,tip:document.getElementById('v_tip').value,
     vendedor,
-    descripcion: window._carritoDesc || document.getElementById('v_descripcion').value,
-    cliente,total:parseFloat(document.getElementById('v_total').value)||0,
-    estado:true,factura:document.getElementById('v_factura').value,
+    descripcion: descripcionFinal,
+    cliente,
+    subtotal: subtotal,
+    descuento: montoDescuento,
+    total: total,
+    estado:true,
+    factura:document.getElementById('v_factura').value,
     fechaPago:document.getElementById('v_fechaPago').value||null,
     comprobante:document.getElementById('v_comprobante').value,
-    nota:document.getElementById('v_nota').value,
+    nota: [document.getElementById('v_nota').value, descLabel].filter(Boolean).join(' | '),
     pago:parseFloat(document.getElementById('v_pago').value)||0,
     saldo:parseFloat(document.getElementById('v_saldo').value)||0,
     estadoFinal:document.getElementById('v_estadoFinal').value,
@@ -1730,9 +2014,8 @@ async function guardarVenta(){
     if(res.error) throw new Error(res.error);
     const ventaId=res.id||'';
     if(carrito.length>0){
-      const descripcion=document.getElementById('v_descripcion').value;
       const items=carrito.map(x=>({
-        id:'',fecha,cliente,vendedor,descripcion,
+        id:'',fecha,cliente,vendedor,descripcion:descripcionFinal,
         producto: x.nombre,codigo:x.codigo||'',
         categoria:productos.find(p=>String(p.id)===String(x.id))?.categoria||'',
         cantidad: x.cantidad,precioUnit: x.precio,
@@ -1858,7 +2141,7 @@ function openEdit(id){
   });
   document.getElementById('e_fechaPago').value=r.fechaPago||'';
   document.getElementById('e_vendedor').value=r.vendedor||'';
-  document.getElementById('e_descripcion').value=r.descripcion||'En tira';
+  document.getElementById('e_descripcion').value=r.descripcion||'Boleta';
   document.getElementById('editOverlay').classList.add('open');
 }
 function closeEdit(){ document.getElementById('editOverlay').classList.remove('open'); editingId=null; }
@@ -1996,6 +2279,15 @@ function exportReporteCSV(){
 // ════════════════════════════════════════
 // STOCK
 // ════════════════════════════════════════
+let stockView = 'grid'; // 'grid' | 'list'
+
+function setStockView(v){
+  stockView = v;
+  document.getElementById('vtGrid').classList.toggle('active', v==='grid');
+  document.getElementById('vtList').classList.toggle('active', v==='list');
+  renderStock();
+}
+
 function renderStock(){
   const q=(document.getElementById('stock_search')?.value||'').toLowerCase();
   const cat=document.getElementById('stock_cat')?.value||'';
@@ -2022,8 +2314,15 @@ function renderStock(){
 
   const grid=document.getElementById('stockGrid');
   const empty=document.getElementById('stockEmpty');
+  const countEl=document.getElementById('stockCount');
+  if(countEl) countEl.textContent = filtered.length > 0 ? `${filtered.length} producto${filtered.length!==1?'s':''}` : '';
+
   if(filtered.length===0){grid.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
+
+  // Aplicar clase según vista
+  grid.className = stockView==='list' ? 'stock-list' : 'stock-grid';
+
   grid.innerHTML=filtered.map(p=>{
     const qty=parseFloat(p.cantidad)||0;
     const min=parseFloat(p.minimo)||10;
@@ -2031,25 +2330,54 @@ function renderStock(){
     const barColor=qty<min?'var(--red)':qty<min*1.5?'var(--accent)':'var(--green)';
     const margen=parseFloat(p.precio||0)-parseFloat(p.costo||0);
     const margenPct=parseFloat(p.costo||0)>0?(margen/parseFloat(p.costo)*100).toFixed(0):null;
-    return `<div class="stock-card${qty<min?' low':''}">
-      <div class="sc-header">
-        <div><div class="sc-code">${p.codigo||'—'}</div><div class="sc-cat">${p.categoria||'—'}</div></div>
-        ${qty<min?`<span style="background:rgba(224,96,96,.15);color:var(--red);font-size:10px;font-family:var(--fm);padding:2px 8px;border-radius:4px">⚠ Bajo</span>`:''}
-      </div>
-      <div class="sc-name">${p.nombre||'Sin nombre'}</div>
-      <div class="sc-price">S/.${parseFloat(p.precio||0).toFixed(2)}</div>
-      ${margenPct!==null?`<div style="font-family:var(--fm);font-size:10px;color:var(--muted)">Costo: S/.${parseFloat(p.costo||0).toFixed(2)} · Margen: ${margenPct}%</div>`:''}
-      <div class="sc-stock">
-        <div><div class="sc-qty" style="font-family:var(--fm)">Stock: <strong style="color:${barColor}">${qty}</strong></div>
-          <div class="sc-bar"><div class="sc-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+
+    if(stockView === 'list'){
+      // ── VISTA LISTA ──
+      return `<div class="stock-card${qty<min?' low':''}">
+        <div class="sc-header" style="min-width:90px">
+          <div class="sc-code">${p.codigo||'—'}</div>
+          <div class="sc-cat">${p.categoria||'—'}</div>
         </div>
-      </div>
-      <div class="sc-actions">
-        ${isAdmin()?`<button class="btn btn-edit" onclick="openStockModal('${p.id}')">✏ Editar</button>`:''}
-        <button class="btn btn-ghost" onclick="openAjusteStock('${p.id}')" style="padding:5px 10px;font-size:12px">± Stock</button>
-        ${isAdmin()?`<button class="btn btn-danger" onclick="deleteRecord('${p.id}','productos')">🗑</button>`:''}
-      </div>
-    </div>`;
+        <div class="sc-name" style="flex:1;min-width:160px">${p.nombre||'Sin nombre'}
+          ${qty<min?`<span style="background:rgba(224,96,96,.15);color:var(--red);font-size:9px;font-family:var(--fm);padding:1px 6px;border-radius:4px;margin-left:6px">⚠ Bajo</span>`:''}
+        </div>
+        <div style="display:flex;flex-direction:column;min-width:90px">
+          <div class="sc-price" style="font-size:18px">S/.${parseFloat(p.precio||0).toFixed(2)}</div>
+          ${margenPct!==null?`<div style="font-family:var(--fm);font-size:10px;color:var(--muted)">Margen: ${margenPct}%</div>`:''}
+        </div>
+        <div style="min-width:120px">
+          <div style="font-family:var(--fm);font-size:12px">Stock: <strong style="color:${barColor}">${qty}</strong> / Mín: ${min}</div>
+          <div class="sc-bar" style="margin-top:4px"><div class="sc-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+        </div>
+        ${margenPct!==null?`<div style="font-family:var(--fm);font-size:11px;color:var(--muted);min-width:100px">Costo: S/.${parseFloat(p.costo||0).toFixed(2)}</div>`:''}
+        <div class="sc-actions" style="flex-shrink:0;margin-left:auto">
+          ${isAdmin()?`<button class="btn btn-edit" onclick="openStockModal('${p.id}')">✏</button>`:''}
+          <button class="btn btn-ghost" onclick="openAjusteStock('${p.id}')" style="padding:5px 10px;font-size:12px">± Stock</button>
+          ${isAdmin()?`<button class="btn btn-danger" onclick="deleteRecord('${p.id}','productos')">🗑</button>`:''}
+        </div>
+      </div>`;
+    } else {
+      // ── VISTA CUADRÍCULA ──
+      return `<div class="stock-card${qty<min?' low':''}">
+        <div class="sc-header">
+          <div><div class="sc-code">${p.codigo||'—'}</div><div class="sc-cat">${p.categoria||'—'}</div></div>
+          ${qty<min?`<span style="background:rgba(224,96,96,.15);color:var(--red);font-size:10px;font-family:var(--fm);padding:2px 8px;border-radius:4px">⚠ Bajo</span>`:''}
+        </div>
+        <div class="sc-name">${p.nombre||'Sin nombre'}</div>
+        <div class="sc-price">S/.${parseFloat(p.precio||0).toFixed(2)}</div>
+        ${margenPct!==null?`<div style="font-family:var(--fm);font-size:10px;color:var(--muted)">Costo: S/.${parseFloat(p.costo||0).toFixed(2)} · Margen: ${margenPct}%</div>`:''}
+        <div class="sc-stock">
+          <div><div class="sc-qty" style="font-family:var(--fm)">Stock: <strong style="color:${barColor}">${qty}</strong></div>
+            <div class="sc-bar"><div class="sc-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+          </div>
+        </div>
+        <div class="sc-actions">
+          ${isAdmin()?`<button class="btn btn-edit" onclick="openStockModal('${p.id}')">✏ Editar</button>`:''}
+          <button class="btn btn-ghost" onclick="openAjusteStock('${p.id}')" style="padding:5px 10px;font-size:12px">± Stock</button>
+          ${isAdmin()?`<button class="btn btn-danger" onclick="deleteRecord('${p.id}','productos')">🗑</button>`:''}
+        </div>
+      </div>`;
+    }
   }).join('');
 }
 
@@ -2096,13 +2424,13 @@ function calcMargenModal(){
 }
 
 async function saveProducto(){
-  const codigo=document.getElementById('sp_codigo').value.trim();
   const nombre=document.getElementById('sp_nombre').value.trim();
   if(!nombre){showToast('El nombre del producto es obligatorio','error');return;}
   const existing=editingStockId?productos.find(x=>String(x.id)===String(editingStockId)):null;
   const record={
     id: editingStockId||'',
-    codigo, categoria:document.getElementById('sp_categoria').value.trim(),
+    codigo:document.getElementById('sp_codigo').value.trim(),
+    categoria:document.getElementById('sp_categoria').value.trim(),
     nombre,
     costo:parseFloat(document.getElementById('sp_costo').value)||0,
     precio:parseFloat(document.getElementById('sp_precio').value)||0,
@@ -2156,9 +2484,8 @@ async function confirmarAjusteStock(){
 }
 
 function exportStockExcel(){
-  const data=productos;
   const wb=XLSX.utils.book_new();
-  const ws=XLSX.utils.json_to_sheet(data.map(p=>({
+  const ws=XLSX.utils.json_to_sheet(productos.map(p=>({
     Código:p.codigo,Categoría:p.categoria,Nombre:p.nombre,
     Costo:p.costo,Precio:p.precio,Cantidad:p.cantidad,Mínimo:p.minimo
   })));
@@ -2202,7 +2529,6 @@ function renderAlmacen(){
     return String(av).localeCompare(String(bv))*almSortDir;
   });
 
-  // Resumen
   const totalUnidades=data.reduce((s,r)=>s+(parseFloat(r.cantidad)||0),0);
   const totalMonto=data.reduce((s,r)=>s+(parseFloat(r.subtotal)||0),0);
   document.getElementById('almSummary').innerHTML=`
@@ -2542,7 +2868,7 @@ async function registrarAbono(id, monto){
 async function registrarDevolucion(id){
   const r=ventas.find(x=>String(x.id)===String(id));
   if(!r) return;
-  if(!confirm(`¿Registrar devolución de la venta de ${r.cliente}?\nEsto marcará la venta como DEVOLUCIÓN y restaurará el stock.`)) return;
+  if(!confirm(`¿Registrar devolución de la venta de ${r.cliente}?`)) return;
   showLoading('REGISTRANDO DEVOLUCIÓN...');
   try{
     const record={...r,tip:'Devolución',estadoFinal:'NO SALIO'};
@@ -2619,7 +2945,6 @@ function setActiveBottomNav(id){
   closeSidebar();
   closeMoreMenu();
 }
-// Cerrar more menu al tocar fuera
 document.addEventListener('click',function(e){
   const menu=document.getElementById('moreMenu');
   const more=document.getElementById('bn-more');
