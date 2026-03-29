@@ -13,10 +13,10 @@
   --surface:#221318;
   --surface2:#2c1a20;
   --border:#4a2535;
-  --accent:#c9973a;       /* dorado */
-  --accent2:#e8b86d;      /* dorado claro */
-  --pink:#d4688a;         /* rosa principal */
-  --pink-light:#e896b0;   /* rosa claro */
+  --accent:#c9973a;
+  --accent2:#e8b86d;
+  --pink:#d4688a;
+  --pink-light:#e896b0;
   --pink-pale:rgba(212,104,138,.15);
   --gold-glow:rgba(201,151,58,.2);
   --pink-glow:rgba(212,104,138,.18);
@@ -42,11 +42,9 @@ body.light-mode .lf input{background:#fff;color:#2a0f1a;}
 body.light-mode .fi{background:#fff;color:#2a0f1a;}
 body.light-mode select.fsel{background:#fff;color:#2a0f1a;}
 
-/* TOGGLE TEMA */
 .theme-toggle{background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 10px;color:rgba(255,255,255,.5);cursor:pointer;font-size:11px;transition:all .2s;margin-bottom:8px;width:100%;font-family:var(--fb);}
 .theme-toggle:hover{border-color:rgba(232,184,109,.5);color:var(--accent2);}
 
-/* BÚSQUEDA GLOBAL */
 .global-search{position:relative;padding:12px 16px;}
 .global-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 12px 8px 32px;color:rgba(255,255,255,.8);font-family:var(--fb);font-size:12px;outline:none;transition:all .2s;}
 .global-search input:focus{background:rgba(255,255,255,.1);border-color:var(--accent);color:#fff;}
@@ -59,33 +57,41 @@ body.light-mode select.fsel{background:#fff;color:#2a0f1a;}
 .gsr-item:hover{background:var(--surface2);}
 .gsr-item .gsr-sub{font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:2px;}
 
-/* ALERTA STOCK BAJO */
 .stock-alert-bar{background:rgba(224,96,96,.1);border:1px solid rgba(224,96,96,.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:none;}
 .stock-alert-bar.show{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .stock-alert-bar .sal-title{font-family:var(--fm);font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:1px;}
 .stock-alert-badge{background:rgba(224,96,96,.15);border:1px solid rgba(224,96,96,.3);border-radius:6px;padding:2px 8px;font-size:11px;font-family:var(--fm);color:var(--red);cursor:pointer;}
 
-/* STOCK EDITABLE */
 .qty-editor{display:flex;align-items:center;gap:6px;}
 .qty-input{width:70px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 8px;color:var(--text);font-family:var(--fm);font-size:13px;text-align:center;outline:none;}
 .qty-input:focus{border-color:var(--accent);}
 
-/* ABONOS */
 .abono-list{display:flex;flex-direction:column;gap:6px;max-height:150px;overflow-y:auto;margin-bottom:10px;}
 .abono-item{display:flex;justify-content:space-between;align-items:center;background:var(--surface2);border-radius:6px;padding:6px 10px;font-size:12px;}
 .abono-fecha{font-family:var(--fm);color:var(--muted);}
 .abono-monto{font-family:var(--fm);color:var(--green);}
 
-/* DASHBOARD FILTROS */
 .dash-period-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:var(--fb);transition:all .2s;}
 .dash-period-btn.active,.dash-period-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 
-/* DEVOLUCIONES */
 .devolucion-badge{background:rgba(180,127,212,.12);color:var(--purple);border:1px solid rgba(180,127,212,.3);}
 
-/* ══════════════════════════════════════
-   DESCUENTO WIDGET — nueva venta
-══════════════════════════════════════ */
+/* ══ GÉNERO SELECTOR ══ */
+.genero-tabs{display:flex;gap:8px;margin-top:2px;}
+.gtab{
+  flex:1;padding:10px 10px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);cursor:pointer;
+  font-size:13px;font-family:var(--fb);transition:all .2s;text-align:center;
+}
+.gtab.active.mujer{background:linear-gradient(135deg,var(--pink),var(--pink-light));color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(212,104,138,.35);}
+.gtab.active.hombre{background:linear-gradient(135deg,#4a7fbd,#7899d4);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(120,153,212,.35);}
+.gtab.active.unisex{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f14;border-color:transparent;box-shadow:0 4px 14px rgba(201,151,58,.35);}
+.gtab:hover:not(.active){border-color:var(--accent);color:var(--text);}
+.genero-badge-mujer{background:rgba(212,104,138,.12);color:var(--pink-light);border:1px solid rgba(212,104,138,.3);padding:2px 8px;border-radius:4px;font-size:10px;font-family:var(--fm);white-space:nowrap;}
+.genero-badge-hombre{background:rgba(120,153,212,.12);color:#7899d4;border:1px solid rgba(120,153,212,.3);padding:2px 8px;border-radius:4px;font-size:10px;font-family:var(--fm);white-space:nowrap;}
+.genero-badge-unisex{background:rgba(201,151,58,.1);color:var(--accent2);border:1px solid rgba(201,151,58,.25);padding:2px 8px;border-radius:4px;font-size:10px;font-family:var(--fm);white-space:nowrap;}
+
+/* ══ DESCUENTO WIDGET ══ */
 .descuento-panel{
   grid-column:1/-1;
   background:linear-gradient(135deg,rgba(201,151,58,.07),rgba(212,104,138,.05));
@@ -128,7 +134,6 @@ body.light-mode select.fsel{background:#fff;color:#2a0f1a;}
 .tfb-original{font-family:var(--fm);font-size:11px;color:var(--muted);text-decoration:line-through;}
 .tfb-badge{background:var(--green);color:#fff;border-radius:6px;padding:3px 10px;font-size:11px;font-family:var(--fm);}
 
-/* DESCRIPCION FIELD CUSTOM */
 .desc-select-wrap{position:relative;}
 .desc-tipo-tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
 .desc-tab{
@@ -144,7 +149,6 @@ body.light-mode select.fsel{background:#fff;color:#2a0f1a;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100vh;display:flex;}
 
-/* ════ PRINT ════ */
 @media print{
   #sidebar,#loadingOverlay,.toolbar,.pagination,.page-header .btn,
   .btn-danger,.btn-edit,.btn-ghost,.modal,.overlay{display:none!important;}
@@ -279,7 +283,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 .page{display:none;flex-direction:column;min-height:100vh;}
 .page.active{display:flex;}
 
-/* PAGE HEADER */
 .page-header{
   padding:24px 34px;border-bottom:1px solid var(--border);
   background:linear-gradient(90deg,var(--surface),rgba(34,19,24,.8));
@@ -302,7 +305,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 .sync-badge.err .sync-dot{background:var(--red);}
 .sync-badge.syncing .sync-dot{background:var(--accent);animation:pulse 1s ease-in-out infinite;}
 
-/* BODY */
 .page-body{padding:28px 34px;flex:1;overflow-y:auto;}
 
 /* ════ CARDS ════ */
@@ -325,7 +327,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 .kpi-value.blue{color:var(--blue);}
 .kpi-value.purple{color:var(--pink-light);}
 
-/* CHARTS */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
 .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;overflow:hidden;}
 .chart-title{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--pink);margin-bottom:16px;}
@@ -333,7 +334,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 .chart-wrap canvas{position:absolute;top:0;left:0;width:100%!important;height:100%!important;}
 .chart-card.full{grid-column:1/-1;}
 
-/* TOP LIST */
 .top-list{display:flex;flex-direction:column;gap:10px;max-height:220px;overflow-y:auto;}
 .top-item{display:flex;align-items:center;gap:12px;}
 .top-rank{font-family:var(--fd);font-size:20px;color:var(--muted);width:28px;text-align:center;}
@@ -343,7 +343,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 .top-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--accent));transition:width .6s ease;}
 .top-amount{font-family:var(--fm);font-size:12px;color:var(--accent);white-space:nowrap;}
 
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;border:none;cursor:pointer;font-family:var(--fb);font-size:13px;font-weight:500;transition:all .2s;white-space:nowrap;}
 .btn-primary{background:linear-gradient(135deg,var(--accent),#b8863a);color:#1a0f14;}
 .btn-primary:hover{background:linear-gradient(135deg,var(--accent2),var(--accent));transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,151,58,.3);}
@@ -357,7 +356,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 .btn-success{background:transparent;color:var(--green);border:1px solid var(--green);padding:5px 10px;font-size:12px;}
 .btn-success:hover{background:var(--green);color:#fff;}
 
-/* TOOLBAR */
 .toolbar{display:flex;align-items:center;gap:12px;padding:14px 34px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;}
 .search-box{flex:1;min-width:200px;position:relative;}
 .search-box input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 14px 9px 38px;color:var(--text);font-family:var(--fb);font-size:13px;outline:none;transition:border-color .2s;}
@@ -366,8 +364,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 select.fsel{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-family:var(--fb);font-size:13px;outline:none;cursor:pointer;}
 select.fsel:focus{border-color:var(--accent);}
 
-/* TABLE */
-.table-wrap{padding:0 34px 34px;overflow-x:auto;}
 table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin-top:16px;}
 thead tr{background:var(--surface2);}
 th{padding:12px 14px;text-align:left;font-family:var(--fm);font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;}
@@ -385,13 +381,11 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 .saldo-neg{font-family:var(--fm);color:var(--red);}
 .saldo-pos{font-family:var(--fm);color:var(--green);}
 
-/* PAGINATION */
 .pagination{display:flex;align-items:center;justify-content:space-between;padding:16px 34px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);}
 .page-btns{display:flex;gap:6px;}
 .page-btn{padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-size:13px;transition:all .15s;}
 .page-btn:hover,.page-btn.active{background:linear-gradient(135deg,var(--accent),var(--pink));color:#fff;border-color:transparent;}
 
-/* MODAL */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:300;align-items:center;justify-content:center;}
 .overlay.open{display:flex;}
 .modal{
@@ -411,20 +405,16 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 .fi:disabled{opacity:.5;cursor:not-allowed;}
 .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:26px;}
 
-/* DELETE */
 .del-confirm{background:var(--surface);border:1px solid var(--red);border-radius:16px;padding:36px;width:400px;max-width:95vw;text-align:center;animation:fadeUp .2s ease;}
 .del-confirm h3{font-family:var(--fd);font-size:26px;font-weight:400;color:var(--red);margin-bottom:12px;}
 .del-confirm p{color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.6;}
 .del-confirm .dact{display:flex;gap:10px;justify-content:center;}
 
-/* USERS */
 .users-table{width:100%;border-collapse:collapse;margin-top:16px;}
 .users-table th{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;}
 .users-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;}
 
-/* STOCK */
 .stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
-/* STOCK LISTA */
 .stock-list{display:flex;flex-direction:column;gap:8px;}
 .stock-list .stock-card{flex-direction:row;align-items:center;gap:16px;padding:14px 18px;flex-wrap:wrap;}
 .stock-list .sc-header{flex-shrink:0;min-width:80px;}
@@ -432,7 +422,6 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 .stock-list .sc-price{font-size:20px;white-space:nowrap;}
 .stock-list .sc-stock{flex-direction:column;min-width:100px;}
 .stock-list .sc-actions{flex-shrink:0;margin-left:auto;}
-/* VIEW TOGGLE BUTTONS */
 .view-toggle{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
 .vtbtn{width:36px;height:34px;background:transparent;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;}
 .vtbtn.active{background:var(--accent);color:#1a0f14;}
@@ -454,11 +443,9 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 .sc-bar-fill{height:100%;border-radius:2px;transition:width .5s ease;}
 .sc-actions{display:flex;gap:8px;}
 
-/* FORM VENTA */
 .venta-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;max-width:700px;}
 .venta-form h3{font-family:var(--fd);font-size:24px;font-weight:400;letter-spacing:3px;color:var(--accent2);margin-bottom:22px;}
 
-/* REPORTE */
 .report-filters{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:flex-end;}
 .rf-group{display:flex;flex-direction:column;gap:6px;}
 .rf-group label{font-size:10px;font-family:var(--fm);text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
@@ -467,43 +454,34 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 .rs-label{font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:4px;}
 .rs-value{font-family:var(--fd);font-size:26px;font-weight:400;color:var(--accent2);}
 
-/* HISTORIAL */
 .cli-history{background:var(--surface2);border-radius:10px;padding:16px;margin-top:12px;}
 .cli-history-title{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;}
 
-/* TOAST */
 .toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:12px;padding:14px 20px;font-size:13px;z-index:9999;transform:translateX(120%);transition:transform .3s ease;min-width:240px;}
 .toast.show{transform:translateX(0);}
 .toast.error{border-left-color:var(--red);}
 .toast.warn{border-left-color:var(--accent);}
 
-/* EMPTY */
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty .eico{font-size:48px;margin-bottom:12px;}
 
-/* ANIMS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes spin{to{transform:rotate(360deg);}}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 
-/* SCROLLBAR */
 ::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:rgba(201,151,58,.3);border-radius:3px;}
 ::-webkit-scrollbar-thumb:hover{background:rgba(212,104,138,.4);}
 
-/* STOCK ALERT */
 .stock-alert-banner{background:rgba(224,96,96,.1);border:1px solid var(--red);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;font-size:13px;}
 
-/* PRINT */
 @media print{
   #sidebar,#loadingOverlay,.overlay,.toast,.modal-actions{display:none!important;}
   body{background:#fff!important;color:#000!important;}
 }
 
-/* ════════════════════════════════════════
-   MOBILE — RESPONSIVE COMPLETO
-════════════════════════════════════════ */
+/* ════ MOBILE ════ */
 #menuToggle{
   display:none;position:fixed;top:12px;left:12px;z-index:500;
   background:var(--surface);border:1px solid var(--border);
@@ -607,6 +585,8 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
   .top-list{max-height:160px !important;}
   .descuento-row{flex-direction:column !important;align-items:flex-start !important;}
   .tfb-value{font-size:24px !important;}
+  .genero-tabs{gap:6px !important;}
+  .gtab{padding:8px 6px !important;font-size:12px !important;}
 }
 @media(min-width:769px) and (max-width:1024px){
   :root{--nav:200px;}
@@ -615,23 +595,20 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 }
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 
-/* INPUT DATE FIX */
 input[type="date"].fsel{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-family:var(--fb);font-size:13px;outline:none;}
 input[type="date"].fsel:focus{border-color:var(--accent);}
+
+/* ════ TABLA WRAP ════ */
+.table-wrap{padding:0 34px 34px;overflow-x:auto;}
 </style>
 </head>
 <body>
 
-<!-- TOP ACCENT STRIPE -->
 <div style="position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pink) 0%,var(--accent) 35%,var(--accent2) 65%,var(--pink) 100%);z-index:9999;pointer-events:none"></div>
 
-<!-- HAMBURGER BUTTON (mobile) -->
 <button id="menuToggle" onclick="toggleSidebar()" aria-label="Menú">☰</button>
-
-<!-- SIDEBAR BACKDROP (mobile) -->
 <div id="sidebarBackdrop" onclick="closeSidebar()"></div>
 
-<!-- BOTTOM NAV (mobile) -->
 <div id="bottomNav">
   <button class="bnav-item active" id="bn-dashboard" onclick="goPage('dashboard');setActiveBottomNav('bn-dashboard')">
     <span class="bni">📊</span>Dashboard
@@ -657,13 +634,11 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
-<!-- LOADING -->
 <div id="loadingOverlay">
   <div class="spinner"></div>
   <div class="ltxt" id="loadingText">CONECTANDO...</div>
 </div>
 
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="ll">
     <span class="lt">ISA <em>Belle</em> STORE</span>
@@ -683,7 +658,6 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
-<!-- SIDEBAR -->
 <div id="sidebar">
   <div class="sb-logo">
     <span class="lt">ISA <em>Belle</em></span>
@@ -694,33 +668,17 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   <div id="peruClock">🕐 Lima, Perú — ...</div>
   <nav class="sb-nav">
     <div class="nav-section">Principal</div>
-    <div class="nav-item active" onclick="goPage('dashboard')">
-      <span class="nav-icon">📊</span> Dashboard
-    </div>
+    <div class="nav-item active" onclick="goPage('dashboard')"><span class="nav-icon">📊</span> Dashboard</div>
     <div class="nav-section">Operaciones</div>
-    <div class="nav-item" onclick="goPage('ventas')">
-      <span class="nav-icon">💰</span> Nueva Venta
-    </div>
-    <div class="nav-item" onclick="goPage('registro')">
-      <span class="nav-icon">📋</span> Registro de Ventas
-    </div>
-    <div class="nav-item" onclick="goPage('reporte')">
-      <span class="nav-icon">📈</span> Reportes
-    </div>
+    <div class="nav-item" onclick="goPage('ventas')"><span class="nav-icon">💰</span> Nueva Venta</div>
+    <div class="nav-item" onclick="goPage('registro')"><span class="nav-icon">📋</span> Registro de Ventas</div>
+    <div class="nav-item" onclick="goPage('reporte')"><span class="nav-icon">📈</span> Reportes</div>
     <div class="nav-section">Inventario</div>
-    <div class="nav-item" onclick="goPage('stock')">
-      <span class="nav-icon">📦</span> Stock de Productos
-    </div>
-    <div class="nav-item" onclick="goPage('almacen')">
-      <span class="nav-icon">🏭</span> Almacén
-    </div>
-    <div class="nav-item" onclick="goPage('clientes')">
-      <span class="nav-icon">🧑‍💼</span> Clientes
-    </div>
+    <div class="nav-item" onclick="goPage('stock')"><span class="nav-icon">📦</span> Stock de Productos</div>
+    <div class="nav-item" onclick="goPage('almacen')"><span class="nav-icon">🏭</span> Almacén</div>
+    <div class="nav-item" onclick="goPage('clientes')"><span class="nav-icon">🧑‍💼</span> Clientes</div>
     <div class="nav-section admin-only">Administración</div>
-    <div class="nav-item admin-only" onclick="goPage('usuarios')">
-      <span class="nav-icon">👥</span> Usuarios
-    </div>
+    <div class="nav-item admin-only" onclick="goPage('usuarios')"><span class="nav-icon">👥</span> Usuarios</div>
   </nav>
   <div class="sb-user">
     <div class="sb-user-info">
@@ -735,12 +693,9 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div id="mainContent">
 
-<!-- ══════════════════════════════════════
-     DASHBOARD
-══════════════════════════════════════ -->
+<!-- DASHBOARD -->
 <div class="page active" id="page-dashboard">
   <div class="page-header">
     <div>
@@ -791,9 +746,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     NUEVA VENTA  ← SECCIÓN ACTUALIZADA
-══════════════════════════════════════ -->
+<!-- NUEVA VENTA -->
 <div class="page" id="page-ventas">
   <div class="page-header">
     <div><div class="page-title">Nueva Venta</div><div class="page-sub">Registrar una venta en Google Sheets</div></div>
@@ -802,19 +755,13 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
     <div class="venta-form">
       <h3>Datos de la Venta</h3>
       <div class="form-grid">
-
-        <!-- Fecha y Tipo -->
         <div class="fg"><label>Fecha *</label><input class="fi" type="date" id="v_fecha"></div>
         <div class="fg"><label>Tipo</label>
           <select class="fi" id="v_tip"><option>Venta</option><option>Devolución</option><option>Otro</option></select>
         </div>
-
-        <!-- Vendedor -->
         <div class="fg"><label>Vendedor</label>
           <select class="fi" id="v_vendedor"></select>
         </div>
-
-        <!-- DESCRIPCIÓN — Boleta / Factura / Personalizado -->
         <div class="fg">
           <label>Descripción / Comprobante</label>
           <div class="desc-tipo-tabs">
@@ -822,68 +769,41 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
             <button type="button" class="desc-tab" id="dtab-factura" onclick="setDescTipo('factura')">📄 Factura</button>
             <button type="button" class="desc-tab" id="dtab-custom" onclick="setDescTipo('custom')">✏ Otro</button>
           </div>
-          <!-- Campo de texto libre (solo visible en "Otro") -->
-          <input class="fi" type="text" id="v_descripcion_custom"
-            placeholder="Escribe algo personalizado..."
-            style="display:none;margin-top:2px"
-            oninput="syncDescripcionHidden()">
-          <!-- Campo oculto que guarda el valor final -->
+          <input class="fi" type="text" id="v_descripcion_custom" placeholder="Escribe algo personalizado..." style="display:none;margin-top:2px" oninput="syncDescripcionHidden()">
           <input type="hidden" id="v_descripcion" value="Boleta">
         </div>
-
-        <!-- Cliente -->
         <div class="fg full"><label>Cliente * <span style="color:var(--muted);font-size:10px">← escribe para buscar o seleccionar</span></label>
           <div style="position:relative">
             <input class="fi" type="text" id="v_cliente" placeholder="Nombre del cliente o negocio" autocomplete="off" oninput="filterClientesSugeridos()" onfocus="filterClientesSugeridos()">
             <div id="clienteDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface2);border:1px solid var(--accent);border-radius:0 0 10px 10px;z-index:200;max-height:200px;overflow-y:auto"></div>
           </div>
         </div>
-
-        <!-- Factura / Fecha pago / Comprobante -->
         <div class="fg"><label>N° Factura / Boleta</label><input class="fi" type="text" id="v_factura" placeholder="E001-XXXX"></div>
         <div class="fg"><label>Fecha de Pago</label><input class="fi" type="date" id="v_fechaPago"></div>
         <div class="fg"><label>Comprobante</label><input class="fi" type="text" id="v_comprobante" placeholder="C-XXX"></div>
         <div class="fg"><label>Nota</label>
           <select class="fi" id="v_nota"><option>RECIBO</option><option>NO SALIO</option></select>
         </div>
-
-        <!-- ══ PANEL DE DESCUENTO ══ -->
         <div class="descuento-panel">
-          <div class="descuento-panel-title">
-            <span>🏷</span> Descuento (opcional)
-          </div>
+          <div class="descuento-panel-title"><span>🏷</span> Descuento (opcional)</div>
           <div class="descuento-row">
-            <!-- Tipo: % o S/. -->
             <div class="descuento-tabs">
               <button type="button" class="dtab active" id="dtipo-pct" onclick="setDescuentoTipo('pct')">% Porcentaje</button>
               <button type="button" class="dtab" id="dtipo-monto" onclick="setDescuentoTipo('monto')">S/. Monto fijo</button>
             </div>
-            <!-- Valor del descuento -->
-            <input class="fi" type="number" id="v_descuento_val"
-              min="0" step="0.01" placeholder="0"
-              style="width:110px;flex-shrink:0"
-              oninput="calcVSaldo()">
-            <!-- Resultado visual -->
+            <input class="fi" type="number" id="v_descuento_val" min="0" step="0.01" placeholder="0" style="width:110px;flex-shrink:0" oninput="calcVSaldo()">
             <div class="descuento-result" id="descuentoResult">Sin descuento</div>
-            <!-- Botón limpiar -->
             <button type="button" class="btn btn-ghost" style="padding:5px 10px;font-size:12px" onclick="clearDescuento()">✕</button>
           </div>
         </div>
-
-        <!-- Subtotal del carrito, descuento y TOTAL FINAL -->
         <div class="fg">
           <label>Subtotal (S/.) <span style="color:var(--muted);font-size:10px">← antes de descuento</span></label>
-          <input class="fi" type="number" id="v_subtotal" step="0.01" placeholder="0.00"
-            oninput="calcVSaldo()" style="font-family:var(--fm)">
+          <input class="fi" type="number" id="v_subtotal" step="0.01" placeholder="0.00" oninput="calcVSaldo()" style="font-family:var(--fm)">
         </div>
         <div class="fg">
           <label>Total Final (S/.) <span style="color:var(--green);font-size:10px">← con descuento</span></label>
-          <input class="fi" type="number" id="v_total" step="0.01" placeholder="0.00"
-            style="font-family:var(--fm);color:var(--accent2);font-weight:600"
-            oninput="calcVSaldo()">
+          <input class="fi" type="number" id="v_total" step="0.01" placeholder="0.00" style="font-family:var(--fm);color:var(--accent2);font-weight:600" oninput="calcVSaldo()">
         </div>
-
-        <!-- Caja visual del total final -->
         <div class="total-final-box" id="totalFinalBox" style="display:none">
           <div>
             <div class="tfb-label">Total Final de la Venta</div>
@@ -894,28 +814,22 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
           </div>
           <div id="tfbBadge"></div>
         </div>
-
-        <!-- Pago / Saldo -->
         <div class="fg"><label>Pago Recibido (S/.)</label>
           <input class="fi" type="number" id="v_pago" step="0.01" placeholder="0.00" oninput="calcVSaldo()">
         </div>
         <div class="fg"><label>Saldo (auto)</label>
           <input class="fi" type="number" id="v_saldo" readonly style="opacity:.6" placeholder="0.00">
         </div>
-
         <div class="fg"><label>Estado Final</label>
           <select class="fi" id="v_estadoFinal"><option>CANCELADO</option><option>PENDIENTE</option><option>NO SALIO</option></select>
         </div>
-
-      </div><!-- /form-grid -->
-
+      </div>
       <div style="display:flex;gap:12px;margin-top:24px;align-items:center">
         <button class="btn btn-primary" id="btnGuardarVenta" onclick="guardarVenta()">💾 Guardar Venta en Sheets</button>
         <button class="btn btn-ghost" onclick="limpiarVenta()">✕ Limpiar</button>
       </div>
-    </div><!-- /venta-form -->
+    </div>
 
-    <!-- Panel derecho: productos + carrito -->
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
         <div style="font-family:var(--fd);font-size:20px;font-weight:400;letter-spacing:3px;color:var(--accent2);margin-bottom:16px">Agregar Productos</div>
@@ -939,13 +853,10 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-  </div><!-- /page-body grid -->
-</div><!-- /page-ventas -->
-
-<!-- ══════════════════════════════════════
-     REGISTRO DE VENTAS
-══════════════════════════════════════ -->
+<!-- REGISTRO DE VENTAS -->
 <div class="page" id="page-registro">
   <div class="page-header">
     <div><div class="page-title">Registro de Ventas</div><div class="page-sub">Historial completo de transacciones</div></div>
@@ -980,9 +891,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   <div class="pagination"><span id="regInfo"></span><div class="page-btns" id="regPagBtns"></div></div>
 </div>
 
-<!-- ══════════════════════════════════════
-     REPORTES
-══════════════════════════════════════ -->
+<!-- REPORTES -->
 <div class="page" id="page-reporte">
   <div class="page-header">
     <div><div class="page-title">Reportes</div><div class="page-sub">Análisis detallado por fecha y vendedor</div></div>
@@ -1025,14 +934,11 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     STOCK
-══════════════════════════════════════ -->
+<!-- STOCK -->
 <div class="page" id="page-stock">
   <div class="page-header">
     <div><div class="page-title">Stock de Productos</div><div class="page-sub">Inventario y precios</div></div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <!-- Toggle cuadrícula / lista -->
       <div class="view-toggle" title="Cambiar vista">
         <button class="vtbtn active" id="vtGrid" onclick="setStockView('grid')" title="Cuadrícula">⊞</button>
         <button class="vtbtn" id="vtList" onclick="setStockView('list')" title="Lista">≡</button>
@@ -1047,6 +953,12 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
       <input type="text" id="stock_search" placeholder="Buscar producto, código..." oninput="renderStock()">
     </div>
     <select class="fsel" id="stock_cat" onchange="renderStock()"><option value="">Todas las categorías</option></select>
+    <select class="fsel" id="stock_genero" onchange="renderStock()">
+      <option value="">Todos los géneros</option>
+      <option value="Mujer">♀ Mujer</option>
+      <option value="Hombre">♂ Hombre</option>
+      <option value="Unisex">⚥ Unisex</option>
+    </select>
     <select class="fsel" id="stock_filtro" onchange="renderStock()">
       <option value="">Todos</option><option value="low">Stock bajo (&lt;10)</option><option value="ok">Stock OK</option>
     </select>
@@ -1058,9 +970,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ALMACÉN
-══════════════════════════════════════ -->
+<!-- ALMACÉN -->
 <div class="page" id="page-almacen">
   <div class="page-header">
     <div><div class="page-title">Almacén</div><div class="page-sub">Detalle de productos vendidos por venta</div></div>
@@ -1100,9 +1010,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   <div class="pagination"><span id="almInfo"></span><div class="page-btns" id="almPagBtns"></div></div>
 </div>
 
-<!-- ══════════════════════════════════════
-     CLIENTES
-══════════════════════════════════════ -->
+<!-- CLIENTES -->
 <div class="page" id="page-clientes">
   <div class="page-header">
     <div><div class="page-title">Clientes</div><div class="page-sub">Base de datos de clientes registrados</div></div>
@@ -1134,9 +1042,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   <div class="pagination"><span id="cliInfo"></span><div class="page-btns" id="cliPagBtns"></div></div>
 </div>
 
-<!-- ══════════════════════════════════════
-     USUARIOS (admin only)
-══════════════════════════════════════ -->
+<!-- USUARIOS -->
 <div class="page" id="page-usuarios">
   <div class="page-header">
     <div><div class="page-title">Usuarios</div><div class="page-sub">Gestión de acceso al sistema</div></div>
@@ -1176,13 +1082,9 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
       <div class="fg"><label>Vendedor</label><select class="fi" id="e_vendedor"></select></div>
       <div class="fg"><label>Descripción</label>
         <select class="fi" id="e_descripcion">
-          <option>Boleta</option>
-          <option>Factura</option>
-          <option>En tira</option>
-          <option>Suelto</option>
-          <option>Suelto - factura</option>
-          <option>En tira- factura</option>
-          <option>SUELTO</option>
+          <option>Boleta</option><option>Factura</option><option>En tira</option>
+          <option>Suelto</option><option>Suelto - factura</option>
+          <option>En tira- factura</option><option>SUELTO</option>
         </select>
       </div>
       <div class="fg full"><label>Cliente</label><input class="fi" type="text" id="e_cliente"></div>
@@ -1204,11 +1106,23 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
 
 <!-- MODAL STOCK -->
 <div class="overlay" id="stockOverlay" onclick="closeStockIfOutside(event)">
-  <div class="modal" style="max-width:500px">
+  <div class="modal" style="max-width:520px">
     <div class="modal-title" id="stockModalTitle">Nuevo Producto</div>
     <div class="form-grid">
       <div class="fg"><label>Código *</label><input class="fi" type="text" id="sp_codigo" placeholder="P-001"></div>
       <div class="fg"><label>Categoría</label><input class="fi" type="text" id="sp_categoria" placeholder="Categoría..."></div>
+
+      <!-- ══ CAMPO GÉNERO ══ -->
+      <div class="fg full">
+        <label>Género</label>
+        <div class="genero-tabs">
+          <button type="button" class="gtab mujer active" id="gtab-mujer" onclick="setGenero('Mujer')">♀ Mujer</button>
+          <button type="button" class="gtab hombre" id="gtab-hombre" onclick="setGenero('Hombre')">♂ Hombre</button>
+          <button type="button" class="gtab unisex" id="gtab-unisex" onclick="setGenero('Unisex')">⚥ Unisex</button>
+        </div>
+        <input type="hidden" id="sp_genero" value="Mujer">
+      </div>
+
       <div class="fg full"><label>Nombre del Producto *</label><input class="fi" type="text" id="sp_nombre" placeholder="Nombre completo del producto"></div>
       <div class="fg"><label>Costo (S/.) <span style="color:var(--muted);font-size:10px">← precio de compra</span></label><input class="fi" type="number" id="sp_costo" step="0.01" placeholder="0.00" oninput="calcMargenModal()"></div>
       <div class="fg"><label>Precio de Venta (S/.)</label><input class="fi" type="number" id="sp_precio" step="0.01" placeholder="0.00" oninput="calcMargenModal()"></div>
@@ -1400,8 +1314,7 @@ let editingStockId = null;
 let editingClienteId = null;
 let isSaving = false;
 
-// Descuento state
-let descuentoTipo = 'pct'; // 'pct' | 'monto'
+let descuentoTipo = 'pct';
 
 let regPage = 1; const regPerPage = 15;
 let regSortKey = 'fecha'; let regSortDir = 1;
@@ -1724,16 +1637,25 @@ function renderDashboard(){
 }
 
 // ════════════════════════════════════════
+// GÉNERO PRODUCTO
+// ════════════════════════════════════════
+function setGenero(g){
+  ['Mujer','Hombre','Unisex'].forEach(x=>{
+    const btn=document.getElementById('gtab-'+x.toLowerCase());
+    if(btn) btn.classList.toggle('active', x===g);
+  });
+  document.getElementById('sp_genero').value=g;
+}
+
+// ════════════════════════════════════════
 // DESCRIPCIÓN — TABS (Boleta / Factura / Otro)
 // ════════════════════════════════════════
 function setDescTipo(tipo){
-  // Actualizar clases de los tabs
   ['boleta','factura','custom'].forEach(t=>{
     document.getElementById('dtab-'+t).classList.toggle('active', t===tipo);
   });
   const customInput = document.getElementById('v_descripcion_custom');
   const hiddenField = document.getElementById('v_descripcion');
-
   if(tipo === 'boleta'){
     customInput.style.display = 'none';
     hiddenField.value = 'Boleta';
@@ -1784,18 +1706,12 @@ function calcVSaldo(){
       montoDescuento = descVal;
     }
   }
-
-  // Asegura que el descuento no supere el subtotal
   montoDescuento = Math.min(montoDescuento, subtotal);
   const totalFinal = Math.max(0, subtotal - montoDescuento);
 
-  // Actualizar campo total
   document.getElementById('v_total').value = totalFinal.toFixed(2);
-
-  // Saldo
   document.getElementById('v_saldo').value = Math.max(0, totalFinal - pago).toFixed(2);
 
-  // Resultado visual del descuento
   const resultEl = document.getElementById('descuentoResult');
   if(descVal > 0 && subtotal > 0){
     resultEl.textContent = `— S/.${montoDescuento.toFixed(2)}`;
@@ -1805,7 +1721,6 @@ function calcVSaldo(){
     resultEl.className = 'descuento-result';
   }
 
-  // Caja total final
   const tfbBox = document.getElementById('totalFinalBox');
   if(subtotal > 0){
     tfbBox.style.display = 'flex';
@@ -1814,9 +1729,7 @@ function calcVSaldo(){
     const badge = document.getElementById('tfbBadge');
     if(montoDescuento > 0){
       orig.textContent = 'Antes: S/.' + subtotal.toFixed(2);
-      const pctLabel = descuentoTipo==='pct'
-        ? descVal.toFixed(0)+'%'
-        : 'S/.'+montoDescuento.toFixed(2);
+      const pctLabel = descuentoTipo==='pct' ? descVal.toFixed(0)+'%' : 'S/.'+montoDescuento.toFixed(2);
       badge.innerHTML = `<span class="tfb-badge">✓ Descuento ${pctLabel}</span>`;
     } else {
       orig.textContent = '';
@@ -1838,14 +1751,17 @@ function renderProdSearch(){
   if(!list) return;
   const filtered=productos.filter(p=>!q||p.nombre?.toLowerCase().includes(q)||p.codigo?.toLowerCase().includes(q)||p.categoria?.toLowerCase().includes(q));
   if(filtered.length===0){list.innerHTML='<div style="color:var(--muted);font-size:12px;text-align:center;padding:16px">Sin productos</div>';return;}
-  list.innerHTML=filtered.slice(0,20).map(p=>`
+  list.innerHTML=filtered.slice(0,20).map(p=>{
+    const genBadge = p.genero ? `<span class="genero-badge-${(p.genero||'').toLowerCase()}" style="margin-left:4px">${p.genero==='Mujer'?'♀':p.genero==='Hombre'?'♂':'⚥'} ${p.genero}</span>` : '';
+    return `
     <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;gap:8px">
       <div style="flex:1;min-width:0">
-        <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.nombre||'Sin nombre'}</div>
+        <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;flex-wrap:wrap">${p.nombre||'Sin nombre'}${genBadge}</div>
         <div style="font-family:var(--fm);font-size:10px;color:var(--muted)">${p.codigo||''} · S/.${parseFloat(p.precio||0).toFixed(2)} · Stock: ${p.cantidad||0}</div>
       </div>
       <button class="btn btn-primary" style="padding:5px 10px;font-size:12px;flex-shrink:0" onclick="addToCarrito('${p.id}')">+</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function addToCarrito(id){
@@ -1895,13 +1811,12 @@ function removeFromCarrito(i){ carrito.splice(i,1); renderCarrito(); }
 
 function aplicarCarrito(){
   const total=carrito.reduce((s,x)=>s+x.precio*x.cantidad,0);
-  // Ahora aplica al SUBTOTAL (antes de descuento)
   document.getElementById('v_subtotal').value=total.toFixed(2);
   calcVSaldo();
   showToast(`✅ Subtotal S/.${total.toFixed(2)} aplicado — agrega descuento si corresponde`);
 }
 
-function limpiarCarrito(){ carrito=[]; window._carritoDesc=null; renderCarrito(); }
+function limpiarCarrito(){ carrito=[]; renderCarrito(); }
 
 function renderClientesSugeridos(){ filterClientesSugeridos(); }
 function filterClientesSugeridos(){
@@ -1943,15 +1858,12 @@ function limpiarVenta(){
   document.getElementById('v_tip').value='Venta';
   document.getElementById('v_nota').value='RECIBO';
   document.getElementById('v_estadoFinal').value='CANCELADO';
-  // Reset descripcion
   setDescTipo('boleta');
-  // Reset descuento
   descuentoTipo='pct';
   setDescuentoTipo('pct');
   document.getElementById('descuentoResult').textContent='Sin descuento';
   document.getElementById('descuentoResult').className='descuento-result';
   document.getElementById('totalFinalBox').style.display='none';
-  // Reset vendedor
   if(!isAdmin()){
     document.getElementById('v_vendedor').value=currentUser.name;
     document.getElementById('v_vendedor').disabled=true;
@@ -1975,7 +1887,6 @@ async function guardarVenta(){
   const total    = parseFloat(document.getElementById('v_total').value)||0;
   const descVal  = parseFloat(document.getElementById('v_descuento_val').value)||0;
 
-  // Calcular monto de descuento para guardar en nota
   let montoDescuento = 0;
   if(descVal > 0 && subtotal > 0){
     montoDescuento = descuentoTipo==='pct' ? subtotal*(descVal/100) : descVal;
@@ -2279,7 +2190,7 @@ function exportReporteCSV(){
 // ════════════════════════════════════════
 // STOCK
 // ════════════════════════════════════════
-let stockView = 'grid'; // 'grid' | 'list'
+let stockView = 'grid';
 
 function setStockView(v){
   stockView = v;
@@ -2288,10 +2199,17 @@ function setStockView(v){
   renderStock();
 }
 
+function genBadgeHtml(genero){
+  if(!genero) return '';
+  const icon = genero==='Mujer'?'♀':genero==='Hombre'?'♂':'⚥';
+  return `<span class="genero-badge-${genero.toLowerCase()}">${icon} ${genero}</span>`;
+}
+
 function renderStock(){
   const q=(document.getElementById('stock_search')?.value||'').toLowerCase();
   const cat=document.getElementById('stock_cat')?.value||'';
   const fil=document.getElementById('stock_filtro')?.value||'';
+  const gen=document.getElementById('stock_genero')?.value||'';
 
   const cats=[...new Set(productos.map(p=>p.categoria).filter(Boolean))].sort();
   const catEl=document.getElementById('stock_cat');
@@ -2306,10 +2224,11 @@ function renderStock(){
   if(alertBadge) alertBadge.style.display=lowStockProds.length>0?'block':'none';
 
   const filtered=productos.filter(p=>{
-    const mQ=!q||[p.nombre,p.codigo,p.categoria].some(x=>(x||'').toLowerCase().includes(q));
+    const mQ=!q||[p.nombre,p.codigo,p.categoria,p.genero].some(x=>(x||'').toLowerCase().includes(q));
     const mC=!cat||p.categoria===cat;
     const mF=!fil||(fil==='low'&&(parseFloat(p.cantidad)||0)<(parseFloat(p.minimo)||10))||(fil==='ok'&&(parseFloat(p.cantidad)||0)>=(parseFloat(p.minimo)||10));
-    return mQ&&mC&&mF;
+    const mG=!gen||p.genero===gen;
+    return mQ&&mC&&mF&&mG;
   });
 
   const grid=document.getElementById('stockGrid');
@@ -2320,7 +2239,6 @@ function renderStock(){
   if(filtered.length===0){grid.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
 
-  // Aplicar clase según vista
   grid.className = stockView==='list' ? 'stock-list' : 'stock-grid';
 
   grid.innerHTML=filtered.map(p=>{
@@ -2330,13 +2248,16 @@ function renderStock(){
     const barColor=qty<min?'var(--red)':qty<min*1.5?'var(--accent)':'var(--green)';
     const margen=parseFloat(p.precio||0)-parseFloat(p.costo||0);
     const margenPct=parseFloat(p.costo||0)>0?(margen/parseFloat(p.costo)*100).toFixed(0):null;
+    const gb = genBadgeHtml(p.genero);
 
     if(stockView === 'list'){
-      // ── VISTA LISTA ──
       return `<div class="stock-card${qty<min?' low':''}">
         <div class="sc-header" style="min-width:90px">
           <div class="sc-code">${p.codigo||'—'}</div>
-          <div class="sc-cat">${p.categoria||'—'}</div>
+          <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:3px">
+            <div class="sc-cat">${p.categoria||'—'}</div>
+            ${gb}
+          </div>
         </div>
         <div class="sc-name" style="flex:1;min-width:160px">${p.nombre||'Sin nombre'}
           ${qty<min?`<span style="background:rgba(224,96,96,.15);color:var(--red);font-size:9px;font-family:var(--fm);padding:1px 6px;border-radius:4px;margin-left:6px">⚠ Bajo</span>`:''}
@@ -2357,10 +2278,15 @@ function renderStock(){
         </div>
       </div>`;
     } else {
-      // ── VISTA CUADRÍCULA ──
       return `<div class="stock-card${qty<min?' low':''}">
         <div class="sc-header">
-          <div><div class="sc-code">${p.codigo||'—'}</div><div class="sc-cat">${p.categoria||'—'}</div></div>
+          <div>
+            <div class="sc-code">${p.codigo||'—'}</div>
+            <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:3px">
+              <div class="sc-cat">${p.categoria||'—'}</div>
+              ${gb}
+            </div>
+          </div>
           ${qty<min?`<span style="background:rgba(224,96,96,.15);color:var(--red);font-size:10px;font-family:var(--fm);padding:2px 8px;border-radius:4px">⚠ Bajo</span>`:''}
         </div>
         <div class="sc-name">${p.nombre||'Sin nombre'}</div>
@@ -2395,10 +2321,12 @@ function openStockModal(id=null){
     document.getElementById('sp_precio').value=p.precio||'';
     document.getElementById('sp_cantidad').value=p.cantidad||'';
     document.getElementById('sp_minimo').value=p.minimo||10;
+    setGenero(p.genero||'Mujer');
   } else {
     title.textContent='Nuevo Producto';
     ['sp_codigo','sp_categoria','sp_nombre','sp_costo','sp_precio','sp_cantidad'].forEach(i=>document.getElementById(i).value='');
     document.getElementById('sp_minimo').value=10;
+    setGenero('Mujer');
   }
   calcMargenModal();
   document.getElementById('stockOverlay').classList.add('open');
@@ -2431,6 +2359,7 @@ async function saveProducto(){
     id: editingStockId||'',
     codigo:document.getElementById('sp_codigo').value.trim(),
     categoria:document.getElementById('sp_categoria').value.trim(),
+    genero:document.getElementById('sp_genero').value||'Mujer',
     nombre,
     costo:parseFloat(document.getElementById('sp_costo').value)||0,
     precio:parseFloat(document.getElementById('sp_precio').value)||0,
@@ -2486,7 +2415,7 @@ async function confirmarAjusteStock(){
 function exportStockExcel(){
   const wb=XLSX.utils.book_new();
   const ws=XLSX.utils.json_to_sheet(productos.map(p=>({
-    Código:p.codigo,Categoría:p.categoria,Nombre:p.nombre,
+    Código:p.codigo,Categoría:p.categoria,Género:p.genero,Nombre:p.nombre,
     Costo:p.costo,Precio:p.precio,Cantidad:p.cantidad,Mínimo:p.minimo
   })));
   XLSX.utils.book_append_sheet(wb,ws,'Stock');
@@ -2932,12 +2861,8 @@ function closeSidebar(){
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarBackdrop').classList.remove('show');
 }
-function toggleMoreMenu(){
-  document.getElementById('moreMenu').classList.toggle('open');
-}
-function closeMoreMenu(){
-  document.getElementById('moreMenu').classList.remove('open');
-}
+function toggleMoreMenu(){ document.getElementById('moreMenu').classList.toggle('open'); }
+function closeMoreMenu(){ document.getElementById('moreMenu').classList.remove('open'); }
 function setActiveBottomNav(id){
   document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));
   const el=document.getElementById(id);
