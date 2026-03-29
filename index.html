@@ -1494,10 +1494,9 @@ async function doLogin(){
     btn.textContent='Ingresar'; btn.disabled=false;
   }
 
-  // Hash SHA-256 de la contraseña ingresada
+  // Comparar contraseña con SHA-256
   const passHash = await sha256(p);
-  // Comparar: si la stored pass es texto plano (migración) comparar también directo
-  const found=users.find(x=>x.user===u&&(x.pass===passHash||x.pass===p));
+  const found=users.find(x=>x.user===u&&String(x.pass)===passHash);
   if(!found){errEl.textContent='❌ Usuario o contraseña incorrectos';document.getElementById('loginPass').value='';return;}
   currentUser=found;
   document.getElementById('loginScreen').style.display='none';
