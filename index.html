@@ -1271,7 +1271,12 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
 // ════════════════════════════════════════
 // CONFIG
 // ════════════════════════════════════════
-const API_URL = 'https://script.google.com/macros/s/AKfycbxubx6ZklUMwqGAWAcdafaWBMsZbz4947Vk8sBPSTQUcy-HiFKIsgiQPJGUHIL3bKSlKg/exec';
+// ── SEGURIDAD: URL ofuscada + token de acceso ──
+const _a = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcw==');
+const _b = atob('QUtmeWNieFVieDZaa2xVTXdxR0FXQWNkYWZhQUJNc1pienc0OTQ3Vms4c0JQU1RRY3ktSGlGS0lzZ2lQSkdVSElMMWJLU2xLZy9leGVj');
+const API_URL = _a + '/' + _b;
+// Token compartido — debe coincidir exactamente con el Apps Script
+const API_TOKEN = 'IBSTORE_2024_X9k#mP2@qL';
 
 // ════════════════════════════════════════
 // ZONA HORARIA PERÚ
@@ -1368,13 +1373,17 @@ function hideLoading(){document.getElementById('loadingOverlay').classList.remov
 // ════════════════════════════════════════
 async function apiCall(action, body={}){
   const isGet = action==='getAll';
-  const url = isGet ? `${API_URL}?action=getAll&sheet=${body.sheet||'ventas'}` : API_URL;
+  const url = isGet
+    ? `${API_URL}?action=getAll&sheet=${body.sheet||'ventas'}&token=${encodeURIComponent(API_TOKEN)}`
+    : API_URL;
   const opts = isGet
     ? {method:'GET'}
-    : {method:'POST', body:JSON.stringify({action, ...body})};
+    : {method:'POST', body:JSON.stringify({action, token: API_TOKEN, ...body})};
   const res = await fetch(url, opts);
   if(!res.ok) throw new Error('HTTP '+res.status);
-  return await res.json();
+  const data = await res.json();
+  if(data.error === 'ACCESO_DENEGADO') { doLogout(); throw new Error('Token inválido'); }
+  return data;
 }
 
 function normalizeKeys(obj){
@@ -1448,6 +1457,14 @@ async function loadAll(){
 }
 
 // ════════════════════════════════════════
+// SHA-256 — Hasheo de contraseñas
+// ════════════════════════════════════════
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// ════════════════════════════════════════
 // LOGIN / AUTH
 // ════════════════════════════════════════
 async function doLogin(){
@@ -1477,7 +1494,10 @@ async function doLogin(){
     btn.textContent='Ingresar'; btn.disabled=false;
   }
 
-  const found=users.find(x=>x.user===u&&x.pass===p);
+  // Hash SHA-256 de la contraseña ingresada
+  const passHash = await sha256(p);
+  // Comparar: si la stored pass es texto plano (migración) comparar también directo
+  const found=users.find(x=>x.user===u&&(x.pass===passHash||x.pass===p));
   if(!found){errEl.textContent='❌ Usuario o contraseña incorrectos';document.getElementById('loginPass').value='';return;}
   currentUser=found;
   document.getElementById('loginScreen').style.display='none';
@@ -2679,8 +2699,9 @@ async function addUser(){
   if(!user||!pass||!name){showToast('Todos los campos son obligatorios','error');return;}
   if(users.find(u=>u.user===user)){showToast('Ese usuario ya existe','error');return;}
   showLoading('AGREGANDO USUARIO...');
+  const passHash = await sha256(pass);
   try{
-    const res=await apiCall('save',{sheet:'usuarios',record:{id:'',user,pass,name,role}});
+    const res=await apiCall('save',{sheet:'usuarios',record:{id:'',user,pass:passHash,name,role}});
     if(res.error) throw new Error(res.error);
     showToast('✅ Usuario agregado');
     ['nu_user','nu_pass','nu_name'].forEach(i=>document.getElementById(i).value='');
