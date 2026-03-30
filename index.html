@@ -457,6 +457,39 @@ td.mono{color:var(--muted);font-family:var(--fm);font-size:12px;}
 .cli-history{background:var(--surface2);border-radius:10px;padding:16px;margin-top:12px;}
 .cli-history-title{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;}
 
+/* ══ BORRADOR & CONEXIÓN ══ */
+#borradorBanner{
+  display:none;position:fixed;top:0;left:0;right:0;z-index:800;
+  background:linear-gradient(90deg,rgba(201,151,58,.95),rgba(232,184,109,.9));
+  color:#1a0f14;padding:12px 24px;
+  align-items:center;gap:14px;justify-content:center;
+  font-family:var(--fb);font-size:13px;font-weight:500;
+  box-shadow:0 4px 20px rgba(201,151,58,.4);
+}
+#borradorBanner .bb-btns{display:flex;gap:8px;margin-left:16px;}
+#borradorBanner .bb-btn{
+  padding:6px 14px;border-radius:8px;border:none;cursor:pointer;
+  font-family:var(--fb);font-size:12px;font-weight:600;
+}
+#borradorBanner .bb-restore{background:#1a0f14;color:var(--accent2);}
+#borradorBanner .bb-discard{background:rgba(0,0,0,.2);color:#1a0f14;}
+#borradorIndicador{
+  display:none;position:fixed;bottom:80px;left:16px;z-index:400;
+  background:var(--surface);border:1px solid rgba(201,151,58,.3);
+  border-radius:10px;padding:7px 14px;
+  font-family:var(--fm);font-size:10px;color:var(--accent);
+  align-items:center;gap:6px;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+#conexionIndicador{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--fm);font-size:11px;
+  padding:4px 10px;border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--surface);
+}
+@media(min-width:769px){#borradorIndicador{bottom:24px;}}
+
 .toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:12px;padding:14px 20px;font-size:13px;z-index:9999;transform:translateX(120%);transition:transform .3s ease;min-width:240px;}
 .toast.show{transform:translateX(0);}
 .toast.error{border-left-color:var(--red);}
@@ -634,6 +667,20 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
   </div>
 </div>
 
+<!-- BANNER BORRADOR -->
+<div id="borradorBanner">
+  <span>💾 Tienes un borrador guardado de hace <strong id="borradorHace">un momento</strong></span>
+  <div class="bb-btns">
+    <button class="bb-btn bb-restore" onclick="aplicarBorrador()">↩ Restaurar</button>
+    <button class="bb-btn bb-discard" onclick="descartarBorrador()">✕ Descartar</button>
+  </div>
+</div>
+<!-- INDICADOR BORRADOR -->
+<div id="borradorIndicador">
+  <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 2s infinite"></span>
+  Borrador guardado
+</div>
+
 <div id="loadingOverlay">
   <div class="spinner"></div>
   <div class="ltxt" id="loadingText">CONECTANDO...</div>
@@ -713,6 +760,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
         <span style="background:var(--red);color:#fff;border-radius:8px;padding:5px 12px;font-size:12px;font-family:var(--fm)">⚠ Stock bajo</span>
       </div>
       <button onclick="toggleTheme()" id="themeBtn" class="btn btn-ghost" style="font-size:16px;padding:7px 12px">🌙</button>
+      <div id="conexionIndicador">🌐 —</div>
       <div class="sync-badge" id="syncBadge"><div class="sync-dot"></div><span id="syncText">—</span></div>
       <button class="btn btn-ghost" onclick="loadAll()">↻ Actualizar</button>
     </div>
@@ -774,7 +822,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
         </div>
         <div class="fg full"><label>Cliente * <span style="color:var(--muted);font-size:10px">← escribe para buscar o seleccionar</span></label>
           <div style="position:relative">
-            <input class="fi" type="text" id="v_cliente" placeholder="Nombre del cliente o negocio" autocomplete="off" oninput="filterClientesSugeridos()" onfocus="filterClientesSugeridos()">
+            <input class="fi" type="text" id="v_cliente" placeholder="Nombre del cliente o negocio" autocomplete="off" oninput="filterClientesSugeridos();guardarBorrador()" onfocus="filterClientesSugeridos()">
             <div id="clienteDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface2);border:1px solid var(--accent);border-radius:0 0 10px 10px;z-index:200;max-height:200px;overflow-y:auto"></div>
           </div>
         </div>
@@ -798,7 +846,7 @@ input[type="date"].fsel:focus{border-color:var(--accent);}
         </div>
         <div class="fg">
           <label>Subtotal (S/.) <span style="color:var(--muted);font-size:10px">← antes de descuento</span></label>
-          <input class="fi" type="number" id="v_subtotal" step="0.01" placeholder="0.00" oninput="calcVSaldo()" style="font-family:var(--fm)">
+          <input class="fi" type="number" id="v_subtotal" step="0.01" placeholder="0.00" oninput="calcVSaldo();guardarBorrador()" style="font-family:var(--fm)">
         </div>
         <div class="fg">
           <label>Total Final (S/.) <span style="color:var(--green);font-size:10px">← con descuento</span></label>
@@ -1325,6 +1373,116 @@ let regPage = 1; const regPerPage = 15;
 let regSortKey = 'fecha'; let regSortDir = 1;
 let repSortKey = 'fecha'; let repSortDir = 1;
 let users = [];
+let _borradorTimer = null;
+let _hayDatosSinGuardar = false;
+
+// ════════════════════════════════════════
+// BORRADOR AUTOMÁTICO (localStorage)
+// ════════════════════════════════════════
+function guardarBorrador(){
+  try{
+    const borrador = {
+      fecha:     document.getElementById('v_fecha')?.value||'',
+      cliente:   document.getElementById('v_cliente')?.value||'',
+      subtotal:  document.getElementById('v_subtotal')?.value||'',
+      total:     document.getElementById('v_total')?.value||'',
+      pago:      document.getElementById('v_pago')?.value||'',
+      factura:   document.getElementById('v_factura')?.value||'',
+      comprobante: document.getElementById('v_comprobante')?.value||'',
+      estadoFinal: document.getElementById('v_estadoFinal')?.value||'',
+      carrito:   carrito,
+      ts:        Date.now()
+    };
+    const tieneData = borrador.cliente || borrador.subtotal || carrito.length > 0;
+    if(tieneData){
+      localStorage.setItem('isa_borrador', JSON.stringify(borrador));
+      _hayDatosSinGuardar = true;
+      mostrarIndicadorBorrador(true);
+    }
+  }catch(e){}
+}
+
+function restaurarBorrador(){
+  try{
+    const raw = localStorage.getItem('isa_borrador');
+    if(!raw) return;
+    const b = JSON.parse(raw);
+    const hace = Math.round((Date.now()-b.ts)/60000);
+    if(hace > 120) { localStorage.removeItem('isa_borrador'); return; } // borrar si tiene más de 2 horas
+    if(!b.cliente && !b.subtotal && (!b.carrito||b.carrito.length===0)) return;
+    // Mostrar banner de restauración
+    const banner = document.getElementById('borradorBanner');
+    if(banner){
+      document.getElementById('borradorHace').textContent = hace < 1 ? 'hace un momento' : 'hace '+hace+' min';
+      banner.style.display = 'flex';
+    }
+  }catch(e){}
+}
+
+function aplicarBorrador(){
+  try{
+    const raw = localStorage.getItem('isa_borrador');
+    if(!raw) return;
+    const b = JSON.parse(raw);
+    if(b.fecha) document.getElementById('v_fecha').value = b.fecha;
+    if(b.cliente) document.getElementById('v_cliente').value = b.cliente;
+    if(b.subtotal) document.getElementById('v_subtotal').value = b.subtotal;
+    if(b.pago) document.getElementById('v_pago').value = b.pago;
+    if(b.factura) document.getElementById('v_factura').value = b.factura;
+    if(b.comprobante) document.getElementById('v_comprobante').value = b.comprobante;
+    if(b.estadoFinal) document.getElementById('v_estadoFinal').value = b.estadoFinal;
+    if(b.carrito && b.carrito.length > 0){ carrito = b.carrito; renderCarrito(); }
+    calcVSaldo();
+    document.getElementById('borradorBanner').style.display = 'none';
+    showToast('✅ Borrador restaurado');
+  }catch(e){}
+}
+
+function descartarBorrador(){
+  localStorage.removeItem('isa_borrador');
+  _hayDatosSinGuardar = false;
+  mostrarIndicadorBorrador(false);
+  document.getElementById('borradorBanner').style.display = 'none';
+}
+
+function mostrarIndicadorBorrador(show){
+  const el = document.getElementById('borradorIndicador');
+  if(el) el.style.display = show ? 'flex' : 'none';
+}
+
+function iniciarBorradorTimer(){
+  if(_borradorTimer) clearInterval(_borradorTimer);
+  _borradorTimer = setInterval(guardarBorrador, 30000);
+}
+
+// ════════════════════════════════════════
+// MONITOR DE CONEXIÓN EN TIEMPO REAL
+// ════════════════════════════════════════
+function iniciarMonitorConexion(){
+  function actualizar(){
+    const online = navigator.onLine;
+    const el = document.getElementById('conexionIndicador');
+    if(!el) return;
+    el.innerHTML = online
+      ? '<span style="width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(109,186,138,.6);display:inline-block"></span> <span style="color:var(--green)">En línea</span>'
+      : '<span style="width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1s infinite;display:inline-block"></span> <span style="color:var(--red)">Sin internet</span>';
+    if(!online) showToast('⚠️ Sin conexión a internet','warn');
+  }
+  window.addEventListener('online',  actualizar);
+  window.addEventListener('offline', actualizar);
+  actualizar();
+}
+
+// ════════════════════════════════════════
+// CONFIRMACIÓN ANTES DE CERRAR
+// ════════════════════════════════════════
+window.addEventListener('beforeunload', function(e){
+  if(_hayDatosSinGuardar){
+    e.preventDefault();
+    e.returnValue = '¿Tienes datos sin guardar. ¿Seguro que quieres salir?';
+    return e.returnValue;
+  }
+});
 
 // ════════════════════════════════════════
 // HELPERS
@@ -1371,7 +1529,8 @@ function hideLoading(){document.getElementById('loadingOverlay').classList.remov
 // ════════════════════════════════════════
 // API
 // ════════════════════════════════════════
-async function apiCall(action, body={}){
+// ── Reintentos automáticos (3 intentos con pausa creciente) ──
+async function apiCall(action, body={}, _intento=1){
   const isGet = action==='getAll';
   const url = isGet
     ? `${API_URL}?action=getAll&sheet=${body.sheet||'ventas'}&token=${encodeURIComponent(API_TOKEN)}`
@@ -1379,11 +1538,21 @@ async function apiCall(action, body={}){
   const opts = isGet
     ? {method:'GET'}
     : {method:'POST', body:JSON.stringify({action, token: API_TOKEN, ...body})};
-  const res = await fetch(url, opts);
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  const data = await res.json();
-  if(data.error === 'ACCESO_DENEGADO') { doLogout(); throw new Error('Token inválido'); }
-  return data;
+  try{
+    const res = await fetch(url, opts);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    if(data.error === 'ACCESO_DENEGADO') { doLogout(); throw new Error('Token inválido'); }
+    return data;
+  } catch(e){
+    if(_intento < 3){
+      const pausa = _intento * 1500;
+      setSync('syncing', `Reintentando (${_intento}/3)...`);
+      await new Promise(r=>setTimeout(r, pausa));
+      return apiCall(action, body, _intento+1);
+    }
+    throw e;
+  }
 }
 
 function normalizeKeys(obj){
@@ -1514,6 +1683,9 @@ async function doLogin(){
   document.getElementById('rep_desde').value=hace30;
   document.getElementById('rep_hasta').value=hoy;
   document.getElementById('v_fecha').value=hoy;
+  iniciarBorradorTimer();
+  iniciarMonitorConexion();
+  setTimeout(()=>{ if(document.getElementById('page-ventas').classList.contains('active')||true) restaurarBorrador(); },1500);
   loadAll();
 }
 
@@ -1954,7 +2126,7 @@ async function guardarVenta(){
       const resAlm=await apiCall('saveAlmacen',{items});
       if(resAlm.error) console.warn('Almacén warning:',resAlm.error);
     }
-    showToast('✅ Venta guardada en Google Sheets');
+    descartarBorrador(); showToast('✅ Venta guardada en Google Sheets');
     limpiarVenta();
     await loadAll();
   }catch(e){
